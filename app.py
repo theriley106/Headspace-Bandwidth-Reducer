@@ -4,6 +4,9 @@ import time
 
 app = Flask(__name__)
 
+@app.route('/')
+def download_csv():
+	return "<h1>This Works</h1>"
 
 if __name__ == "__main__":
-	pass
+	app.run()
