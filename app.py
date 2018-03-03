@@ -9,8 +9,11 @@ def index():
 	return "<h1>This Works</h1>"
 
 @app.route('/grabFile/<fileName>')
-def grabFile():
+def grabFile(fileName):
 	return "<h1>This Works</h1>"
+
+def playAudio(audio)
+
 
 if __name__ == "__main__":
 	app.run()
