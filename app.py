@@ -12,7 +12,7 @@ def index():
 def grabFile(fileName):
 	return "<h1>This Works</h1>"
 
-@app.route('/grabFile/<fileName>')
+@app.route('/playAudio/<audioFile>')
 def playAudio(audioFile):
 	return "<h1>This Works</h1>"
 
