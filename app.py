@@ -8,11 +8,13 @@ app = Flask(__name__)
 def index():
 	return "<h1>This Works</h1>"
 
-@app.route('/grabFile/<fileName>')
+@app.route('/grabFile/<fileName>', method="POST")
 def grabFile(fileName):
 	return "<h1>This Works</h1>"
 
-def playAudio(audio)
+@app.route('/grabFile/<fileName>')
+def playAudio(audioFile):
+	return "<h1>This Works</h1>"
 
 
 if __name__ == "__main__":
