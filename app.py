@@ -8,9 +8,9 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 	# This is the primary page mimicing the headspace app page
-	return "<h1>This Works</h1>"
+	return render_template("index.html")
 
-@app.route('/grabFile/<fileName>', method="POST")
+@app.route('/grabFile/<fileName>', methods=["POST"])
 def grabFile(fileName):
 	# This function grabs the file/JSON indicating file splits
 	return "<h1>This Works</h1>"
