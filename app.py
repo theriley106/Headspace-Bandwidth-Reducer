@@ -8,5 +8,9 @@ app = Flask(__name__)
 def index():
 	return "<h1>This Works</h1>"
 
+@app.route('/grabFile/<fileName>')
+def grabFile():
+	return "<h1>This Works</h1>"
+
 if __name__ == "__main__":
 	app.run()
