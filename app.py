@@ -7,8 +7,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+	a = []
+
+	for val in [3, 5, 10, 15, 20]:
+		a.append({"Time": val, "Filename": "sampleMp3.mp3", "Type": "New"})
+	b = []
+	for val in [3, 5, 10, 15, 20]:
+		b.append({"Time": val, "Filename": "sampleMp3.mp3", "Type": "Old"})
 	# This is the primary page mimicing the headspace app page
-	return render_template("index.html")
+	return render_template("index.html", listOfOldFiles=a, listOfNewFiles=b)
 
 @app.route('/grabFile/<fileName>', methods=["POST"])
 def grabFile(fileName):
@@ -22,3 +29,6 @@ def playAudio(audioFile):
 
 if __name__ == "__main__":
 	app.run()
+
+
+
