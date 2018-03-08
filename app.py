@@ -9,11 +9,11 @@ app = Flask(__name__)
 def index():
 	a = []
 
-	for val in [3, 5, 10, 15, 20]:
-		a.append({"Time": val, "Filename": "sampleMp3.mp3", "Type": "New"})
+	for val in [3, 5, 10]:
+		a.append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "New"})
 	b = []
-	for val in [3, 5, 10, 15, 20]:
-		b.append({"Time": val, "Filename": "sampleMp3.mp3", "Type": "Old"})
+	for val in [3, 5, 10]:
+		b.append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "Old"})
 	# This is the primary page mimicing the headspace app page
 	return render_template("index.html", listOfOldFiles=a, listOfNewFiles=b)
 
