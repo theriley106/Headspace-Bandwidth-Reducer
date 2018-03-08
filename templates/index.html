@@ -60,29 +60,35 @@ body {
 <body bgcolor="#F48C45">
 
 <script>
-  function play(){
-       var audio = document.getElementById("audio");
+  function play(elemName){
+       var audio = document.getElementById(elemName);
        audio.play();
                  }
-    function resetText() {
-    document.getElementById('min3').innerHTML = "3 MIN";
-    document.getElementById('min5').innerHTML = "5 MIN";
-    document.getElementById('min10').innerHTML = "10 MIN";
-    document.getElementById('min15').innerHTML = "15 MIN";
-    document.getElementById('min20').innerHTML = "20 MIN";
-    document.getElementById('min32').innerHTML = "3 MIN";
-    document.getElementById('min52').innerHTML = "5 MIN";
-    document.getElementById('min102').innerHTML = "10 MIN";
-    document.getElementById('min152').innerHTML = "15 MIN";
-    document.getElementById('min202').innerHTML = "20 MIN";
-}
+function resetElems() {
+
+
+	var elems = ["min3", "min5", "min10", "min15", "min20"];
+	var i;
+	for (ele in elems) {
+		ele = elems[ele];
+		let rawNum = ele.match(/\d+/g).map(n => parseInt(n));
+		document.getElementById(ele).innerHTML = rawNum + " MIN";
+		document.getElementById(ele + "2").innerHTML = rawNum + " MIN";
+		sound = document.getElementById("audio" + rawNum);
+		sound.pause();
+		sound.currentTime = 0;
+		sound = document.getElementById("audio" + rawNum + "2");
+		sound.pause();
+		sound.currentTime = 0;
+	}}
    </script>
 
 
 <div align="center">
 	<h1><font color="white">Previous Method of Serving Audio Files</font></h1>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='play();resetText();document.getElementById("min3").innerHTML = "Playing";'>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio3");document.getElementById("min3").innerHTML = "Playing";'>
+	<audio id="audio3" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min3">
 	                    3 min
 
@@ -90,7 +96,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='play();resetText();document.getElementById("min5").innerHTML = "Playing";'>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio5");document.getElementById("min5").innerHTML = "Playing";'>
+	<audio id="audio5" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min5">
 	                    5 min
 
@@ -98,7 +105,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='play();resetText();document.getElementById("min10").innerHTML = "Playing";'>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio10");document.getElementById("min10").innerHTML = "Playing";'>
+	<audio id="audio10" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min10">
 	                    10 min
 
@@ -106,7 +114,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='play();resetText();document.getElementById("min15").innerHTML = "Playing";'>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio15");document.getElementById("min15").innerHTML = "Playing";'>
+	<audio id="audio15" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min15">
 	                    15 min
 
@@ -114,8 +123,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button" onclick='play();resetText();document.getElementById("min20").innerHTML = "Playing";'>
-		<audio id="audio" src="/static/sampleMp3.mp3" ></audio>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button" onclick='resetElems();play("audio20");document.getElementById("min20").innerHTML = "Playing";'>
+		<audio id="audio20" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min20">
 	                    20 min
 
@@ -129,7 +138,8 @@ body {
 <div align="center">
 	<h1><font color="white">New Method of Serving Audio Files</font></h1>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='play();resetText();document.getElementById("min32").innerHTML = "Playing";'>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio32");document.getElementById("min32").innerHTML = "Playing";'>
+	<audio id="audio32" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min32">
 	                    3 min
 
@@ -137,7 +147,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='play();resetText();document.getElementById("min52").innerHTML = "Playing";'>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio52");document.getElementById("min52").innerHTML = "Playing";'>
+	<audio id="audio52" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min52">
 	                    5 min
 
@@ -145,7 +156,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='play();resetText();document.getElementById("min102").innerHTML = "Playing";'>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio102");document.getElementById("min102").innerHTML = "Playing";'>
+	<audio id="audio102" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min102">
 	                    10 min
 
@@ -153,7 +165,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='play();resetText();document.getElementById("min152").innerHTML = "Playing";'>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio152");document.getElementById("min152").innerHTML = "Playing";'>
+	<audio id="audio152" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min152">
 	                    15 min
 
@@ -161,8 +174,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button" onclick='play();resetText();document.getElementById("min202").innerHTML = "Playing";'>
-		<audio id="audio" src="/static/sampleMp3.mp3" ></audio>
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button" onclick='resetElems();play("audio202");document.getElementById("min202").innerHTML = "Playing";'>
+		<audio id="audio202" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span id="min202">
 	                    20 min
 
@@ -171,6 +184,8 @@ body {
 	</div>
 </div>
 
+
+<h4>Told you so!</h4>
 
 </body>
 </html>
