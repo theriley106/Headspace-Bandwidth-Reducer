@@ -38,9 +38,33 @@ body {
 	    transition: all 0.2s ease-in-out;
 	    border-radius: 20px;
 }
+.css-1y368wo {
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    flex: 1 0 auto;
+}
+
+
 </style>
+
+
+
+
 <body bgcolor="#F48C45">
 
+<script>
+  function play(){
+       var audio = document.getElementById("audio");
+       audio.play();
+                 }
+   </script>
 
 
 <div align="center">
@@ -78,7 +102,8 @@ body {
 	</div>
 	</div>
 
-	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button">
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button" onclick="play()">
+		<audio id="audio" src="/static/sampleMp3.mp3" ></audio>
 	<!---->  <span>
 	                    20 min
 
@@ -87,29 +112,8 @@ body {
 	</div>
 </div>
 
-<div class="css-hpqfwn">
-  <div class="css-17jhzn3">
-    <canvas height="280" width="280" id="ember1427" class="css-d6ct7a ember-view">
-</canvas>
-  </div>
-  <div class="css-wqsnk1">
-    <button tabindex="0" aria-label="pause meditation" role="button" class="css-1wrrsk4" data-ember-action="" data-ember-action-1428="1428">
-        <div data-component="svg-icon" id="ember1431" class="css-wt9jqs css-1cqgl9p css-1ivoip3 ember-view"><svg role="img" class="css-1p4nrt2">
-  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://my.headspace.com/images/icons-7f5ea2bff99f254d6c0be1b29f14f502.svg#pause"></use>
-</svg>
-</div>
-    </button>
-  </div>
-  <audio data-component="media-item-player" id="ember1430" class="ember-view" src="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=testing%20tos%20ee%20if%20this%20works&tl=es&total=1&idx=0&textlen=28"></audio>
-</div>
-<div class="css-wqsnk1">
-    <button tabindex="0" aria-label="pause meditation" role="button" class="css-1wrrsk4" data-ember-action="" data-ember-action-1034="1034">
-        <div data-component="svg-icon" id="ember1040" class="css-wt9jqs css-1cqgl9p css-1ivoip3 ember-view"><svg role="img" class="css-1p4nrt2">
-  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://my.headspace.com/images/icons-7f5ea2bff99f254d6c0be1b29f14f502.svg#pause"></use>
-</svg>
-</div>
-    </button>
-  </div>
+
+
 </body>
 </html>
 
