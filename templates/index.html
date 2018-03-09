@@ -76,6 +76,9 @@ function resetElems() {
 	for (ele in elems) {
 		ele = elems[ele];
 		console.log(ele);
+		var output = document.getElementById("output");
+		output.innerHTML += ele + "<br>";
+
 		let rawNum = ele.match(/\d+/g).map(n => parseInt(n));
 		document.getElementById(ele).innerHTML = rawNum + " MIN";
 		document.getElementById(ele + "2").innerHTML = rawNum + " MIN";
@@ -128,8 +131,7 @@ function resetElems() {
 
 </div>
 
-
-<h4>Told you so!</h4>
+<div id="output"></div>
 
 </body>
 </html>
