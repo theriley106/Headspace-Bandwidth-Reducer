@@ -38,7 +38,7 @@ def splitAudio(audioFile):
 if __name__ == '__main__':
 	audioFile = "3MinuteBasics.mp3"
 	jsonInfo = splitAudio(audioFile)
-	with open('{}.json'.format(audioFile.partition(".")[0], 'w') as fp:
+	with open('{}.json'.format(audioFile.partition(".")[0]), 'w') as fp:
 		json.dump(jsonInfo, fp)
 	for i, val in enumerate(jsonInfo):
 		os.system("play newFile{}.mp3".format(i))
