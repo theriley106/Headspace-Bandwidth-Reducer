@@ -3,6 +3,7 @@ import commands
 import re
 from mutagen.mp3 import MP3
 import time
+import json
 
 def getSilenceTimestamps(audioFile, duration=2):
 	splitPoints = []
@@ -33,6 +34,7 @@ def splitAudio(audioFile):
 				splitEnd = audio.info.length
 		commands.getstatusoutput("ffmpeg -ss {} -t {} -i {} {}".format(splitBegin, splitEnd, audioFile, outputFile))
 	return timeStamps
+
 if __name__ == '__main__':
 	for i, val in enumerate(splitAudio("3MinuteBasics.mp3")):
 		os.system("play newFile{}.mp3".format(i))
