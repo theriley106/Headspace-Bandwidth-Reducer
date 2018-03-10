@@ -36,7 +36,11 @@ def splitAudio(audioFile):
 	return timeStamps
 
 if __name__ == '__main__':
-	for i, val in enumerate(splitAudio("3MinuteBasics.mp3")):
+	audioFile = "3MinuteBasics.mp3"
+	jsonInfo = splitAudio(audioFile)
+	with open('{}.json'.format(audioFile.partition(".")[0], 'w') as fp:
+		json.dump(jsonInfo, fp)
+	for i, val in enumerate(jsonInfo):
 		os.system("play newFile{}.mp3".format(i))
 		print("Audio Clip {} Completed - Sleeping for {} Seconds".format(i, val["Duration"]))
 		time.sleep(val["Duration"])
