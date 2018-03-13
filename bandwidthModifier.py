@@ -11,6 +11,13 @@ def findTotalSilence(audioFile):
 		totalSilence += val['Duration']
 	return totalSilence
 
+def findAllMp3(directory):
+	listOfFiles = []
+	for file in os.listdir(directory):
+		if file.endswith(".mp3"):
+			listOfFiles.append(os.path.join(directory, file))
+	return listOfFiles
+
 def getSilencePercentage(audioFile):
 	audio = MP3(audioFile)
 	audioLength = audio.info.length
