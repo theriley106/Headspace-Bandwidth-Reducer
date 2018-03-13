@@ -11,9 +11,12 @@ def getSilenceTimestamps(audioFile, duration=2):
 	#output, tmp = commands.getstatusoutput("sox -V3 {} newAudio.mp3 silence -l 1 0.0 -50d 1 1.0 -50d : newfile : restart".format(audioFile))
 	for i, var in enumerate(str(tmp).split("\n")):
 		if "_end" in str(var):
-			end, duration = re.findall("\d+\.\d+", str(var))
-			start = re.findall("\d+\.\d+", str(tmp.split("\n")[i-1]))[0]
-			splitPoints.append({"Start": float(start), "End": float(end), "Duration": float(duration)})
+			try:
+				end, duration = re.findall("\d+\.\d+", str(var))
+				start = re.findall("\d+\.\d+", str(tmp.split("\n")[i-1]))[0]
+				splitPoints.append({"Start": float(start), "End": float(end), "Duration": float(duration)})
+			except:
+				pass
 	return splitPoints
 
 def splitAudio(audioFile):
@@ -46,3 +49,7 @@ if __name__ == '__main__':
 		time.sleep(val["Duration"])
 
 #ffmpeg -ss <silence_end - 0.25> -t <next_silence_start - silence_end + 0.25> -i input.mov word-N.mov
+# 10 Minute - 8.6MB to 3.5MB
+# 5 Minute - 6.1MB to 1.6MB
+# 3 Minute - 4.4MB to 1.5MB
+
