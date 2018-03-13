@@ -55,4 +55,5 @@ def getAllNums():
     return listOfIDs
 
 if __name__ == '__main__':
-    print generateURL(3659)
+    print getAllNums()
+    #print generateURL(3659)
