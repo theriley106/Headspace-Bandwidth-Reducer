@@ -49,7 +49,7 @@ if __name__ == '__main__':
 		time.sleep(val["Duration"])
 
 #ffmpeg -ss <silence_end - 0.25> -t <next_silence_start - silence_end + 0.25> -i input.mov word-N.mov
-# 10 Minute - 8.6MB to 3.5MB
-# 5 Minute - 6.1MB to 1.6MB
-# 3 Minute - 4.4MB to 1.5MB
+# 10 Minute - 8.6MB to 3.5MB - 59.3%
+# 5 Minute - 6.1MB to 1.6MB - 73.77%
+# 3 Minute - 4.4MB to 1.5MB - 65.91%
 
