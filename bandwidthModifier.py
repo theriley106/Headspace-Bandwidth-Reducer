@@ -11,6 +11,11 @@ def findTotalSilence(audioFile):
 		totalSilence += val['Duration']
 	return totalSilence
 
+def getSilencePercentage(audioFile):
+	audio = MP3(audioFile)
+	audioLength = audio.info.length
+	return (findTotalSilence(audioFile) / audioLength) * 100
+
 def getSilenceTimestamps(audioFile, duration=2):
 	splitPoints = []
 	output, tmp = commands.getstatusoutput("ffmpeg -i {} -af silencedetect=noise=-50dB:d={} -f null -".format(audioFile, duration))
