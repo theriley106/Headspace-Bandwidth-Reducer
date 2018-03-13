@@ -1,6 +1,5 @@
 import requests
-
-def generateURL(number):
+def getAllURLs():
     headers = {
         'Pragma': 'no-cache',
         'Origin': 'https://my.headspace.com',
@@ -12,13 +11,20 @@ def generateURL(number):
         'X-HS-No-Cache': 'true',
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/60.0.3112.113 Chrome/60.0.3112.113 Safari/537.36',
         'Connection': 'keep-alive',
+        'Referer': 'https://my.headspace.com/',
     }
 
     params = (
-        ('mp3', 'true'),
+        ('activityGroupIds', '124'),
+        ('limit', '100'),
+        ('page', '0'),
     )
 
-    response = requests.get('https://api.prod.headspace.com/content/media-items/{}/make-signed-url'.format(number), headers=headers, params=params)
-    return response.json()["url"]
+    response = requests.get('https://api.prod.headspace.com/content/activities', headers=headers, params=params)
+    for val in response.json()["included"]:
+        if val["type"] == "mediaItems":
+            if ".mp3" in str(val["attributes"]["filename"]):
+                print("{} - {}".format(val["id"], val["attributes"]["filename"]))
 
-print generateURL(3659)
+
+getAllURLs()
