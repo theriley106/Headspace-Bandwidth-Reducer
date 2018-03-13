@@ -47,12 +47,25 @@ def getAllNums():
     )
 
     response = requests.get('https://api.prod.headspace.com/content/activities', headers=headers, params=params)
-    for val in response.json()["included"]:
+    for i, val in enumerate(response.json()["included"]):
         if val["type"] == "mediaItems":
             if ".mp3" in str(val["attributes"]["filename"]):
                 listOfIDs.append(val["id"])
+                print("{} / {}".format(i, str(response.json()["included"]).count(".mp3")))
+                downloadMP3(generateURL(val["id"]), val["attributes"]["filename"])
                 #print("{} - {}".format(val["id"], val["attributes"]["filename"]))
     return listOfIDs
+
+def downloadMP3(mp3URL, mp3File):
+    try:
+        #return MP3 file name
+        #calls it a random file name to later delete
+        with open(mp3File, 'wb') as f:
+            #this saves the response locally as an actual mp3 file
+            f.write(requests.get(mp3URL,timeout=20).content)
+        return mp3File
+    except:
+        pass
 
 if __name__ == '__main__':
     print getAllNums()

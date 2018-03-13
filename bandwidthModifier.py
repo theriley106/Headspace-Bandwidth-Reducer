@@ -5,6 +5,12 @@ from mutagen.mp3 import MP3
 import time
 import json
 
+def findTotalSilence(audioFile):
+	totalSilence = 0
+	for val in getSilenceTimestamps(audioFile):
+		totalSilence += val['Duration']
+	return totalSilence
+
 def getSilenceTimestamps(audioFile, duration=2):
 	splitPoints = []
 	output, tmp = commands.getstatusoutput("ffmpeg -i {} -af silencedetect=noise=-50dB:d={} -f null -".format(audioFile, duration))
