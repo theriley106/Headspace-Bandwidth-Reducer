@@ -22,6 +22,7 @@ def generateURL(number):
     return response.json()["url"]
 
 def getAllNums():
+    listOfIDs = []
     headers = {
         'Pragma': 'no-cache',
         'Origin': 'https://my.headspace.com',
@@ -49,7 +50,8 @@ def getAllNums():
     for val in response.json()["included"]:
         if val["type"] == "mediaItems":
             if ".mp3" in str(val["attributes"]["filename"]):
-                print("{} - {}".format(val["id"], val["attributes"]["filename"]))
-
+                listOfIDs.append(val["id"])
+                #print("{} - {}".format(val["id"], val["attributes"]["filename"]))
+    return listOfIDs
 
 print generateURL(3659)
