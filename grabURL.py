@@ -54,4 +54,5 @@ def getAllNums():
                 #print("{} - {}".format(val["id"], val["attributes"]["filename"]))
     return listOfIDs
 
-print generateURL(3659)
+if __name__ == '__main__':
+    print generateURL(3659)
