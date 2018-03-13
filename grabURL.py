@@ -21,7 +21,7 @@ def generateURL(number):
     response = requests.get('https://api.prod.headspace.com/content/media-items/{}/make-signed-url'.format(number), headers=headers, params=params)
     return response.json()["url"]
 
-def getAllURLs():
+def getAllNums():
     headers = {
         'Pragma': 'no-cache',
         'Origin': 'https://my.headspace.com',
