@@ -21,7 +21,7 @@ def findAllMp3(directory):
 def getSilencePercentage(audioFile):
 	audio = MP3(audioFile)
 	audioLength = audio.info.length
-	return (findTotalSilence(audioFile) / audioLength) * 100
+	return audioLength, (findTotalSilence(audioFile) / audioLength) * 100
 
 def getSilenceTimestamps(audioFile, duration=2):
 	splitPoints = []
@@ -33,7 +33,7 @@ def getSilenceTimestamps(audioFile, duration=2):
 				end, duration = re.findall("\d+\.\d+", str(var))
 				start = re.findall("\d+\.\d+", str(tmp.split("\n")[i-1]))[0]
 				splitPoints.append({"Start": float(start), "End": float(end), "Duration": float(duration)})
-			except:
+			except Exception as exp:
 				pass
 	return splitPoints
 

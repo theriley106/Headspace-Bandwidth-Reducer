@@ -2,15 +2,7 @@
 <!-- Latest compiled and minified CSS -->
 <!-- <link href="http://brobin.github.io/hacker-bootstrap/css/hacker.css" rel="stylesheet"> -->
 <!-- Latest compiled and minified CSS -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <style>
 body {
     background-image: url('https://hs-prod-content.imgix.net/pack-foundations-level_1-pattern-mob-player__1493939248895.ai?fm=png32&or=6&w=1920');
@@ -63,7 +55,10 @@ body {
     flex: 1 0 auto;
 }
 
-
+.container {
+    width: 30%;
+    top: 45%;
+}
 .dropdown {
     display: inline-block;
 }
@@ -82,7 +77,6 @@ body {
 	outline: none;
 	border: 4px solid white !important;
 }
-
 
 </style>
 
@@ -124,47 +118,53 @@ function resetElems() {
    </script>
 
 
+<div align="center">
+	<h1><font color="white">Previous Method of Serving Audio Files</font></h1>
 
-<div class="container" style="padding-top: 10px;">
-	<div class="row">
-		<div class="col-md-3">
-			<h3><font color="white">Old Method of Serving Audio Files</font></h3>
-			</div>
+	{% for soundClip in listOfOldFiles %}
+		<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio{{ soundClip.Time }}");document.getElementById("min{{ soundClip.Time }}").innerHTML = "Playing";'>
+		<audio id="audio{{ soundClip.Time }}" src="/static/{{ soundClip.Filename }}" ></audio>
+		<!---->  <span id="min{{ soundClip.Time }}">
+		                    {{ soundClip.Time }} min
 
-		<div class="col-md-6"  style="border: 2px solid white; padding-bottom: 10px; padding-top: -10px;">
-			<center>
-				<h2><font color="white">Previous Method of Serving Audio Files</font></h2>
-
-					{% for soundClip in listOfOldFiles %}
-							<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio{{ soundClip.Time }}");document.getElementById("min{{ soundClip.Time }}").innerHTML = "Playing";'>
-							<audio id="audio{{ soundClip.Time }}" src="/static/{{ soundClip.Filename }}" ></audio>
-							<!---->  <span id="min{{ soundClip.Time }}">
-							                    {{ soundClip.Time }} min
-
-							  </span>
-							</div>
-							</div>
-					{% endfor %}
-
-
-				<h2><font color="white">New Method of Serving Audio Files</font></h2>
-
-					{% for soundClip in listOfNewFiles %}
-							<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio{{ soundClip.Time }}2");document.getElementById("min{{ soundClip.Time }}2").innerHTML = "Playing";'>
-								<audio id="audio{{ soundClip.Time }}2" src="/static/{{ soundClip.Filename }}" ></audio>
-								<!---->  <span id="min{{ soundClip.Time }}2">
-								                    {{ soundClip.Time }} min
-
-								  </span>
-								</div>
-								</div>
-					{% endfor %}
-			</center>
+		  </span>
 		</div>
-		<div class="col-md-3">
-			<h3><font color="white">New Method of Serving Audio Files</font></h3>
 		</div>
-	</div>
+
+		{% endfor %}
+
+</div>
+
+
+
+<div align="center">
+	<h1><font color="white">New Method of Serving Audio Files</font></h1>
+
+
+	{% for soundClip in listOfNewFiles %}
+	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio{{ soundClip.Time }}2");document.getElementById("min{{ soundClip.Time }}2").innerHTML = "Playing";'>
+		<audio id="audio{{ soundClip.Time }}2" src="/static/{{ soundClip.Filename }}" ></audio>
+		<!---->  <span id="min{{ soundClip.Time }}2">
+		                    {{ soundClip.Time }} min
+
+		  </span>
+		</div>
+		</div>
+
+		{% endfor %}
+
+
+
+</div>
+<br>
+<br>
+
+<div class="container text-center ccol-xs-6 wellZing" id="fileInfo" >Click Time</div>
+
+<div class="container text-center ccol-xs-6 well"><p><b>Output</b></p><p id="output"></p>
+
+<button class="btn btn-default"><p><b>Output</b></p><p id="output"></p></div>
+
 </div>
 </body>
 </html>
