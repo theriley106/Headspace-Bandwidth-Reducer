@@ -145,32 +145,18 @@ function resetElems() {
 		<div class="col-md-6"  style="border: 0px solid white; padding-bottom: 10px; padding-top: -10px;">
 				<b><font color='white'><div align='center' style="text-align: left; border: 3px solid white; margin: 0 auto; padding-left: 30px; padding: 10px; min-height: 100px;" id="headerOutput"><center><h1>Press any Audio Button to Continue</h1></center></div></font></b>
 			<center>
+					{% for fileInfo in DATABASE %}
+						<h2><font color="white">{{ fileInfo.Description }}</font></h2>
+						{% for soundClip in fileInfo.Files %}
+								<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio{{ soundClip.Time }}2");document.getElementById("min{{ soundClip.Time }}2").innerHTML = "Playing";'>
+									<audio id="audio{{ soundClip.Time }}2" src="/static/{{ soundClip.Filename }}" ></audio>
+									<!---->  <span id="min{{ soundClip.Time }}2">
+									                    {{ soundClip.Time }} min
 
-					{% for soundClip in listOfOldFiles %}
-							<h2><font color="white">{{ soundClip.Description }}</font></h2>
-							<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio{{ soundClip.Time }}");document.getElementById("min{{ soundClip.Time }}").innerHTML = "Playing";'>
-							<audio id="audio{{ soundClip.Time }}" src="/static/{{ soundClip.Filename }}" ></audio>
-							<!---->  <span id="min{{ soundClip.Time }}">
-							                    {{ soundClip.Time }} min
-
-							  </span>
-							</div>
-							</div>
-					{% endfor %}
-
-
-
-
-					{% for soundClip in listOfNewFiles %}
-							<h2><font color="white">{{ soundClip.Description }}</font></h2>
-							<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio{{ soundClip.Time }}2");document.getElementById("min{{ soundClip.Time }}2").innerHTML = "Playing";'>
-								<audio id="audio{{ soundClip.Time }}2" src="/static/{{ soundClip.Filename }}" ></audio>
-								<!---->  <span id="min{{ soundClip.Time }}2">
-								                    {{ soundClip.Time }} min
-
-								  </span>
-								</div>
-								</div>
+									  </span>
+									</div>
+									</div>
+						{% endfor %}
 					{% endfor %}
 			</center>
 		</div>

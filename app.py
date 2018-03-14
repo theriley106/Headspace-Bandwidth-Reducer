@@ -18,7 +18,7 @@ def index():
 		tempInfo["Files"].append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "Old"})
 	database.append(tempInfo)
 	# This is the primary page mimicing the headspace app page
-	return render_template("index.html", database=database)
+	return render_template("index.html", DATABASE=database)
 
 @app.route('/grabFile/<fileName>', methods=["POST"])
 def grabFile(fileName):
