@@ -4,6 +4,7 @@ import time
 import bandwidthModifier
 from categorizeFiles import *
 DIRECTORY = "static/Mp3/"
+MAX_FILES = 7
 app = Flask(__name__)
 
 @app.route('/')
@@ -20,7 +21,7 @@ def index():
 				fileName = val["FileName"]
 				tempInfo["Files"].append({"Elem": fileName.replace(".mp3", "").replace("/", ""), "Time": time, "Filename": fileName})
 		database.append(tempInfo)
-	return render_template("index.html", DATABASE=database)
+	return render_template("index.html", DATABASE=database[:MAX_FILES])
 
 @app.route('/grabFile/<fileName>', methods=["POST"])
 def grabFile(fileName):
