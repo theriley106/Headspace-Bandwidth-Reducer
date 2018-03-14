@@ -7,15 +7,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	a = []
-
+	database = []
+	# {Descrition: blah, "lengths": {3: {},  5: {}, 10: {} }}
+	tempInfo = {"Description": "Basics Day 1", "Files": []}
 	for val in [3, 5, 10]:
-		a.append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "New"})
-	b = []
+		tempInfo["Files"].append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "New"})
+	database.append(tempInfo)
+	tempInfo = {"Description": "Basics Day 2", "Files": []}
 	for val in [3, 5, 10]:
-		b.append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "Old"})
+		tempInfo["Files"].append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "Old"})
+	database.append(tempInfo)
 	# This is the primary page mimicing the headspace app page
-	return render_template("index.html", listOfOldFiles=a, listOfNewFiles=b)
+	return render_template("index.html", database=database)
 
 @app.route('/grabFile/<fileName>', methods=["POST"])
 def grabFile(fileName):
