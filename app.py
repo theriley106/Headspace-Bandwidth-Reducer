@@ -3,7 +3,7 @@ import os
 import time
 import bandwidthModifier
 from categorizeFiles import *
-DIRECTORY = "Mp3/"
+DIRECTORY = "static/Mp3/"
 app = Flask(__name__)
 
 @app.route('/')
@@ -18,7 +18,7 @@ def index():
 			if val["Day"] == day:
 				time = val["Time"]
 				fileName = val["FileName"]
-				tempInfo["Files"].append({"Elem": fileName.replace(".mp3", ""), "Time": time, "Filename": fileName})
+				tempInfo["Files"].append({"Elem": fileName.replace(".mp3", "").replace("/", ""), "Time": time, "Filename": fileName})
 		database.append(tempInfo)
 	return render_template("index.html", DATABASE=database)
 

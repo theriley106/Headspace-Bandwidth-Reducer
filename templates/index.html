@@ -107,16 +107,19 @@ function resetElems() {
 
 
 	var elems = [];
-
-	{% for soundClip in listOfOldFiles %}
-	elems.push("{{ soundClip.Elem }}");
+	var times = [];
+	{% for fileInfo in DATABASE %}
+		{% for soundClip in fileInfo.Files %}
+			elems.push("{{ soundClip.Elem }}");
+			times.push("{{ soundClip.Time }}")
+		{% endfor %}
 	{% endfor %}
 	var i;
 	for (ele in elems) {
+		i = ele;
 		ele = elems[ele];
 		console.log(ele);
-		var output = document.getElementById("output");
-		output.innerHTML += ele + "<br>";
+		document.getElementById(ele + "Span").innerHTML = times[i] + " MIN";
 		sound = document.getElementById(ele);
 		sound.pause();
 		sound.currentTime = 0;
@@ -143,11 +146,11 @@ function resetElems() {
 				<b><font color='white'><div align='center' style="text-align: left; border: 3px solid white; margin: 0 auto; padding-left: 30px; padding: 10px; min-height: 100px;" id="headerOutput"><center><h1>Press any Audio Button to Continue</h1></center></div></font></b>
 			<center>
 					{% for fileInfo in DATABASE %}
-						<h2><font color="white">{{ fileInfo.Description }}</font></h2>
+						<h4><font color="white">{{ fileInfo.Description }}</font></h4>
 						{% for soundClip in fileInfo.Files %}
-								<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("{{ soundClip.Elem }}");document.getElementById("{{ soundClip.Elem }}").innerHTML = "Playing";'>
-									<audio id="{{ soundClip.Elem }}" src="static/{{ soundClip.Filename }}" ></audio>
-									<!---->  <span id="{{ soundClip.Elem }}">
+								<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("{{ soundClip.Elem }}");document.getElementById("{{ soundClip.Elem }}Span").innerHTML = "Playing";'>
+									<audio id="{{ soundClip.Elem }}" src="{{ soundClip.Filename }}" ></audio>
+									<!---->  <span id="{{ soundClip.Elem }}Span">
 									                    {{ soundClip.Time }} min
 
 									  </span>
