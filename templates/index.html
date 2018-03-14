@@ -95,9 +95,11 @@ body {
 
 <script>
   function play(elemName){
-
-		var headerOutput = document.getElementById("headerOutput");
-		headerOutput.innerHTML += "Currently Playing";
+	   var headerOutput = document.getElementById("headerOutput");
+	   headerOutput.innerHTML = "<h3>Playing: <b>" + elemName + "</b></h3>";
+	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + elemName + "</b></h4>";
+	   headerOutput.innerHTML += "<h4>New File Size: <b>" + elemName + "</b></h4>";
+	   headerOutput.innerHTML += "<h4>Bandwidth Reduction: <b>" + elemName + "</b></h4>";
        var audio = document.getElementById(elemName);
        audio.play();
                  }
@@ -141,8 +143,9 @@ function resetElems() {
 		</div>
 
 		<div class="col-md-6"  style="border: 0px solid white; padding-bottom: 10px; padding-top: -10px;">
+				<b><font color='white'><div align='center' style="text-align: left; border: 3px solid white; margin: 0 auto; padding-left: 30px; padding: 10px; min-height: 100px;" id="headerOutput"><center><h1>Press any Audio Button to Continue</h1></center></div></font></b>
 			<center>
-				<h2 id="headerOutput"></h2>
+
 				<h2><font color="white">Previous Method of Serving Audio Files</font></h2>
 
 					{% for soundClip in listOfOldFiles %}
