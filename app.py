@@ -3,6 +3,7 @@ import os
 import time
 import bandwidthModifier
 from categorizeFiles import *
+import operator
 DIRECTORY = "static/Mp3/"
 MAX_FILES = 7
 app = Flask(__name__)
@@ -20,6 +21,7 @@ def index():
 				time = val["Time"]
 				fileName = val["FileName"]
 				tempInfo["Files"].append({"Elem": fileName.replace(".mp3", "").replace("/", ""), "Time": time, "Filename": fileName})
+		tempInfo["Files"].sort(key=operator.itemgetter('Time'))
 		database.append(tempInfo)
 	return render_template("index.html", DATABASE=database[:MAX_FILES])
 
