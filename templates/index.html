@@ -69,6 +69,7 @@ body {
 }
 
 .well {
+	min-height: 80%;
 	color: white;
 	background-color: #F57D2F;
 	outline: none;
@@ -128,9 +129,14 @@ function resetElems() {
 
 <div class="container" style="padding-top: 10px;">
 	<div class="row">
-		<div class="col-md-3">
-			<h3><font color="white">Old Method of Serving Audio Files</font></h3>
-			</div>
+		<div class="col-md-3 well text-center">
+			<p>
+				<b>
+					Old Method of Distributing Audio
+				</b>
+			</p>
+			<p id="output"></p>
+		</div>
 
 		<div class="col-md-6"  style="border: 0px solid white; padding-bottom: 10px; padding-top: -10px;">
 			<center>
@@ -162,7 +168,13 @@ function resetElems() {
 					{% endfor %}
 			</center>
 		</div>
-		<div class="col-md-3 well text-center"><p><b>Output</b></p><p id="output"></p>
+		<div class="col-md-3 well text-center">
+			<p>
+				<b>
+					New Method of Distributing Audio
+				</b>
+			</p>
+			<p id="output"></p>
 		</div>
 	</div>
 </div>
