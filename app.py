@@ -11,7 +11,7 @@ def index():
 	database = []
 	# {Descrition: blah, "lengths": {3: {},  5: {}, 10: {} }}
 	allInfo = extractAll(DIRECTORY)
-	for i in range(categorizeFiles(DIRECTORY)):
+	for i in range(extractTotalDay(DIRECTORY)):
 		day = i + 1
 		tempInfo = {"Description": "Basics Day {}".format(day), "Files": []}
 		for val in allInfo:
