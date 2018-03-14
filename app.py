@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, request, url_for, redirect, M
 import os
 import time
 import bandwidthModifier
+import categorizeFiles
 
 app = Flask(__name__)
 
@@ -9,7 +10,9 @@ app = Flask(__name__)
 def index():
 	database = []
 	# {Descrition: blah, "lengths": {3: {},  5: {}, 10: {} }}
-	tempInfo = {"Description": "Basics Day 1", "Files": []}
+	for i in range(categorizeFiles("Mp3/")):
+		day = i + 1
+		tempInfo = {"Description": "Basics Day {}".format(day), "Files": []}
 	for val in [3, 5, 10]:
 		tempInfo["Files"].append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "New"})
 	database.append(tempInfo)

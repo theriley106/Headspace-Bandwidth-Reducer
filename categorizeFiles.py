@@ -9,5 +9,15 @@ def extractDay(string):
 	# Regex to extract day from file
 	return re.findall("the-basics_s(\d+)_", string)[0]
 
-for val in bM.findAllMp3('Mp3/'):
-	print extractDay(val)
+def extractTotalDay(directory):
+	days = []
+	for var in bM.findAllMp3(directory):
+		days.append(int(extractDay(var)))
+	days.sort()
+	return list(days)[::-1][0]
+
+def extractAll(directory):
+	info = []
+	for val in bM.findAllMp3(directory):
+		info.append({"FileName": val, "Day": extractTotalDay(val), "Time": extractTime(val)})
+	return info
