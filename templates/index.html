@@ -120,12 +120,10 @@ function resetElems() {
 		ele = elems[ele];
 		console.log(ele);
 		document.getElementById(ele + "Span").innerHTML = times[i] + " MIN";
-		sound = document.getElementById(ele);
-		sound.pause();
-		sound.currentTime = 0;
-		sound = document.getElementById(ele);
-		sound.pause();
-		sound.currentTime = 0;
+		sound = document.getElementsByTagName("audio");
+		for(var i = 0; i < sound.length; i++) {
+			sound[i].pause();
+		}
 	}}
    </script>
 
@@ -149,7 +147,7 @@ function resetElems() {
 						<h4><font color="white">{{ fileInfo.Description }}</font></h4>
 						{% for soundClip in fileInfo.Files %}
 								<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("{{ soundClip.Elem }}");document.getElementById("{{ soundClip.Elem }}Span").innerHTML = "Playing";'>
-									<audio id="{{ soundClip.Elem }}" src="{{ soundClip.Filename }}" ></audio>
+									<audio preload="none" id="{{ soundClip.Elem }}" src="{{ soundClip.Filename }}" ></audio>
 									<!---->  <span id="{{ soundClip.Elem }}Span">
 									                    {{ soundClip.Time }} min
 

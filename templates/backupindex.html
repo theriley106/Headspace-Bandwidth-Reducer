@@ -108,12 +108,10 @@ function resetElems() {
 		let rawNum = ele.match(/\d+/g).map(n => parseInt(n));
 		document.getElementById(ele).innerHTML = rawNum + " MIN";
 		document.getElementById(ele + "2").innerHTML = rawNum + " MIN";
-		sound = document.getElementById("audio" + rawNum);
-		sound.pause();
-		sound.currentTime = 0;
-		sound = document.getElementById("audio" + rawNum + "2");
-		sound.pause();
-		sound.currentTime = 0;
+		sound = document.getElementByTagName("audio");
+		for(var i = 0; i < sound.length; i++) {
+			sounds[i].pause();
+		}
 	}}
    </script>
 
@@ -143,7 +141,7 @@ function resetElems() {
 
 	{% for soundClip in listOfNewFiles %}
 	<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();play("audio{{ soundClip.Time }}2");document.getElementById("min{{ soundClip.Time }}2").innerHTML = "Playing";'>
-		<audio id="audio{{ soundClip.Time }}2" src="/static/{{ soundClip.Filename }}" ></audio>
+		<audio preload="none"i stop d="audio{{ soundClip.Time }}2" src="/static/{{ soundClip.Filename }}" ></audio>
 		<!---->  <span id="min{{ soundClip.Time }}2">
 		                    {{ soundClip.Time }} min
 
