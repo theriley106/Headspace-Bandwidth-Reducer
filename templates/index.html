@@ -95,6 +95,9 @@ body {
 
 <script>
   function play(elemName){
+
+		var headerOutput = document.getElementById("headerOutput");
+		headerOutput.innerHTML += "Currently Playing";
        var audio = document.getElementById(elemName);
        audio.play();
                  }
@@ -112,7 +115,6 @@ function resetElems() {
 		console.log(ele);
 		var output = document.getElementById("output");
 		output.innerHTML += ele + "<br>";
-
 		let rawNum = ele.match(/\d+/g).map(n => parseInt(n));
 		document.getElementById(ele).innerHTML = rawNum + " MIN";
 		document.getElementById(ele + "2").innerHTML = rawNum + " MIN";
@@ -140,6 +142,7 @@ function resetElems() {
 
 		<div class="col-md-6"  style="border: 0px solid white; padding-bottom: 10px; padding-top: -10px;">
 			<center>
+				<h2 id="headerOutput"></h2>
 				<h2><font color="white">Previous Method of Serving Audio Files</font></h2>
 
 					{% for soundClip in listOfOldFiles %}
