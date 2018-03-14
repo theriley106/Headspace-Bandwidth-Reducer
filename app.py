@@ -18,7 +18,7 @@ def index():
 			if val["Day"] == day:
 				time = val["Time"]
 				fileName = val["FileName"]
-				tempInfo["Files"].append({"Time": time, "Filename": fileName})
+				tempInfo["Files"].append({"Elem": fileName.replace(".mp3", ""), "Time": time, "Filename": fileName})
 		database.append(tempInfo)
 	return render_template("index.html", DATABASE=database)
 
