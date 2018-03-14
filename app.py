@@ -2,28 +2,24 @@ from flask import Flask, request, render_template, request, url_for, redirect, M
 import os
 import time
 import bandwidthModifier
-import categorizeFiles
-
+from categorizeFiles import *
+DIRECTORY = "Mp3/"
 app = Flask(__name__)
 
 @app.route('/')
 def index():
 	database = []
 	# {Descrition: blah, "lengths": {3: {},  5: {}, 10: {} }}
-	allInfo = bM.findAllMp3(directory)
-	for i in range(categorizeFiles("Mp3/")):
+	allInfo = extractAll(DIRECTORY)
+	for i in range(categorizeFiles(DIRECTORY)):
 		day = i + 1
 		tempInfo = {"Description": "Basics Day {}".format(day), "Files": []}
 		for val in allInfo:
-			if val["Day"] == day
-	for val in [3, 5, 10]:
-		tempInfo["Files"].append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "New"})
-	database.append(tempInfo)
-	tempInfo = {"Description": "Basics Day 2", "Files": []}
-	for val in [3, 5, 10]:
-		tempInfo["Files"].append({"Time": val, "Filename": str(val) + "MinuteBasics.mp3", "Type": "Old"})
-	database.append(tempInfo)
-	# This is the primary page mimicing the headspace app page
+			if val["Day"] == day:
+				time = val["Time"]
+				fileName = val["FileName"]
+				tempInfo["Files"].append({"Time": time, "Filename": fileName})
+		database.append(tempInfo)
 	return render_template("index.html", DATABASE=database)
 
 @app.route('/grabFile/<fileName>', methods=["POST"])

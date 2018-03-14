@@ -19,5 +19,5 @@ def extractTotalDay(directory):
 def extractAll(directory):
 	info = []
 	for val in bM.findAllMp3(directory):
-		info.append({"FileName": val, "Day": extractTotalDay(val), "Time": extractTime(val)})
+		info.append({"FileName": val, "Day": extractDay(val), "Time": extractTime(val)})
 	return info
