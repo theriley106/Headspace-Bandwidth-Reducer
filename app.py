@@ -23,6 +23,7 @@ def index():
 				info = bandwidthModifier.splitAudio(fileName)
 				elemName = fileName.replace(".mp3", "").replace("/", "")
 				if info != None:
+					print("added")
 					tempInfo["Files"].append({"Info": info, "Elem": elemName, "Time": time, "Filename": fileName})
 		tempInfo["Files"].sort(key=operator.itemgetter('Time'))
 		database.append(tempInfo)
