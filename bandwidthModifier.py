@@ -5,6 +5,15 @@ from mutagen.mp3 import MP3
 import time
 import json
 
+#os.rename(val, "static/Mp3/{}/{}.mp3".format(extractType(val), re.findall("pack\Dthe\D\w+_(\d+)m_en", val)[0]))
+#^ lol I have no idea
+
+def extractType(fileName):
+	return re.findall("pack\Dthe\D(\w+)_\d+m_en", fileName)[0]
+
+def massFindMp3():
+	return [val for sublist in [[os.path.join(i[0], j) for j in i[2] if j.endswith('.mp3')] for i in os.walk('./')] for val in sublist]
+
 def renameFile(fileName):
 	return "static/Mp3/{}.mp3".format(re.findall("pack\Dthe\D(\w+)_en", fileName)[0])
 
