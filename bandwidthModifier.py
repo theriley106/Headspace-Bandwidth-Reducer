@@ -8,6 +8,15 @@ import json
 #os.rename(val, "static/Mp3/{}/{}.mp3".format(extractType(val), re.findall("pack\Dthe\D\w+_(\d+)m_en", val)[0]))
 #^ lol I have no idea
 
+'''
+for val in bW.findAllMp3("static/Mp3/basics_s1"):
+	if "_" in str(val).partition("s1")[2]:
+		os.rename(val, "{}s1/{}".format(val.partition("s1")[0], val.partition("s1")[2].replace("_", "/"))
+
+^ Stop coding at 3am...
+'''
+
+
 def extractType(fileName):
 	return re.findall("pack\Dthe\D(\w+)_\d+m_en", fileName)[0]
 
@@ -56,7 +65,7 @@ def splitAudio(audioFile):
 		return None
 	timeStamps = getSilenceTimestamps(audioFile)
 	for i, value in enumerate(timeStamps):
-		outputFile = "static/Mp3/{}/{}_{}.mp3".format(directory, audioFile.replace(".mp3", "").replace("/static/Mp3/", ""), i)
+		outputFile = "{}_{}.mp3".format(audioFile.replace(".mp3", "").replace("/static/Mp3/", ""), i)
 		#print outputFile
 		if i == 0:
 			splitBegin = 0
