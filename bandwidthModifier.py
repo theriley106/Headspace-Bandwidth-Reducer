@@ -5,6 +5,9 @@ from mutagen.mp3 import MP3
 import time
 import json
 
+def renameFile(fileName):
+	return "static/Mp3/{}.mp3".format(re.findall("pack\Dthe\D(\w+)_en", fileName)[0])
+
 def findTotalSilence(audioFile):
 	totalSilence = 0
 	for val in getSilenceTimestamps(audioFile):
@@ -42,10 +45,10 @@ def splitAudio(audioFile):
 		audio = MP3(audioFile)
 	except:
 		return None
-	print(audioFile)
 	timeStamps = getSilenceTimestamps(audioFile)
 	for i, value in enumerate(timeStamps):
-		outputFile = "{}_{}.mp3".format(audioFile.replace(".mp3", ""), i)
+		outputFile = "static/Mp3/{}/{}_{}.mp3".format(directory, audioFile.replace(".mp3", "").replace("/static/Mp3/", ""), i)
+		#print outputFile
 		if i == 0:
 			splitBegin = 0
 			splitEnd = value["Start"]
@@ -57,7 +60,8 @@ def splitAudio(audioFile):
 			except:
 				splitBegin = value["End"]
 				splitEnd = audio.info.length
-		commands.getstatusoutput("ffmpeg -ss {} -t {} -i {} {}".format(splitBegin, splitEnd, audioFile, outputFile))
+		e = commands.getstatusoutput("ffmpeg -ss {} -t {} -i {} {}".format(splitBegin, splitEnd, audioFile, outputFile))
+		print e
 	return timeStamps
 
 if __name__ == '__main__':
