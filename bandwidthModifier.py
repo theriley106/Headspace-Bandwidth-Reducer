@@ -38,10 +38,14 @@ def getSilenceTimestamps(audioFile, duration=2):
 	return splitPoints
 
 def splitAudio(audioFile):
-	audio = MP3(audioFile)
+	try:
+		audio = MP3(audioFile)
+	except:
+		return None
+	print(audioFile)
 	timeStamps = getSilenceTimestamps(audioFile)
 	for i, value in enumerate(timeStamps):
-		outputFile = "newFile{}.mp3".format(i)
+		outputFile = "{}_{}.mp3".format(audioFile.replace(".mp3", ""), i)
 		if i == 0:
 			splitBegin = 0
 			splitEnd = value["Start"]
@@ -62,7 +66,7 @@ if __name__ == '__main__':
 	with open('{}.json'.format(audioFile.partition(".")[0]), 'w') as fp:
 		json.dump(jsonInfo, fp)
 	for i, val in enumerate(jsonInfo):
-		os.system("play newFile{}.mp3".format(i))
+		os.system("play {}_{}.mp3".format(audioFile.replace(".mp3", ""), i))
 		print("Audio Clip {} Completed - Sleeping for {} Seconds".format(i, val["Duration"]))
 		time.sleep(val["Duration"])
 

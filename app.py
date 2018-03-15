@@ -20,7 +20,10 @@ def index():
 			if val["Day"] == day:
 				time = val["Time"]
 				fileName = val["FileName"]
-				tempInfo["Files"].append({"Elem": fileName.replace(".mp3", "").replace("/", ""), "Time": time, "Filename": fileName})
+				info = bandwidthModifier.splitAudio(fileName)
+				elemName = fileName.replace(".mp3", "").replace("/", "")
+				if info != None:
+					tempInfo["Files"].append({"Info": info, "Elem": elemName, "Time": time, "Filename": fileName})
 		tempInfo["Files"].sort(key=operator.itemgetter('Time'))
 		database.append(tempInfo)
 	return render_template("index.html", DATABASE=database[:MAX_FILES])
