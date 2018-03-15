@@ -16,8 +16,15 @@ for val in bW.findAllMp3("static/Mp3/basics_s1"):
 ^ Stop coding at 3am...
 '''
 
+def checkText(text):
+    return int(text) if text.isdigit() else text
+
+def sortKey(fileName):
+	head, tail = os.path.split(fileName)
+	return [ checkText(c) for c in re.split('(\d+)', tail) ]
+
 def getTime(fileName):
-	return re.findall("\d+\/(\d+)", fileName)
+	return re.findall("\d+\/(\d+)", fileName)[0]
 
 def extractType(fileName):
 	return re.findall("pack\Dthe\D(\w+)_\d+m_en", fileName)[0]
@@ -39,6 +46,7 @@ def findAllMp3(directory):
 	for file in os.listdir(directory):
 		if file.endswith(".mp3"):
 			listOfFiles.append(os.path.join(directory, file))
+	listOfFiles.sort(key=sortKey)
 	return listOfFiles
 
 def getSilencePercentage(audioFile):
@@ -81,7 +89,6 @@ def splitAudio(audioFile):
 				splitBegin = value["End"]
 				splitEnd = audio.info.length
 		e = commands.getstatusoutput("ffmpeg -ss {} -t {} -i {} {}".format(splitBegin, splitEnd, audioFile, outputFile))
-		print e
 	return timeStamps
 
 if __name__ == '__main__':

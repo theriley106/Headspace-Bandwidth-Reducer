@@ -4,6 +4,7 @@ import time
 import bandwidthModifier
 from categorizeFiles import *
 import operator
+import json
 DIRECTORY = "static/Mp3/"
 MAX_FILES = 7
 app = Flask(__name__)
@@ -12,21 +13,27 @@ app = Flask(__name__)
 def index():
 	database = []
 	# {Descrition: blah, "lengths": {3: {},  5: {}, 10: {} }}
-	allInfo = extractAll(DIRECTORY)
 	for i in range(1,11):
 		folder = DIRECTORY + "basics_s{}".format(i)
-		tempInfo = {"Folder": folder, "Description": "Basics Day {}".format(i), "Files": []}
-		for val in allInfo:
-			if val["Day"] == day:
-				time = val["Time"]
-				fileName = val["FileName"]
-				info = bandwidthModifier.splitAudio(fileName)
-				elemName = fileName.replace(".mp3", "").replace("/", "")
-				if info != None:
-					print("added")
-					tempInfo["Files"].append({"Info": info, "Elem": elemName, "Time": time, "Filename": fileName})
-		tempInfo["Files"].sort(key=operator.itemgetter('Time'))
-		database.append(tempInfo)
+		permInfo = {"Folder": folder, "Description": "Basics Day {}".format(i), "Files": []}
+		for val in bandwidthModifier.findAllMp3(folder):
+			fileInfo = {}
+			timeVal = bandwidthModifier.getTime(val)
+			fileInfo["Duration"] = timeVal
+			fileInfo["FullFile"] = val
+			fileInfo["PartialFiles"] = []
+			print '{}/{}.json'.format(folder, timeVal)
+			json_data = json.load(open('{}/{}.json'.format(folder, timeVal)))
+			for countVal, fileName in enumerate(bandwidthModifier.findAllMp3(folder + "/{}/".format(timeVal))):
+				tempInfo = {}
+				tempInfo["FileName"] = fileName
+				tempInfo["Duration"] = json_data[countVal-1]["Duration"]
+				tempInfo["Start"] = json_data[countVal-1]["Start"]
+				tempInfo["End"] = json_data[countVal-1]["End"]
+				fileInfo["PartialFiles"].append(tempInfo)
+			permInfo["Files"].append(fileInfo)
+		database.append(permInfo)
+	print database
 	return render_template("index.html", DATABASE=database[:MAX_FILES])
 
 @app.route('/grabFile/<fileName>', methods=["POST"])
