@@ -16,6 +16,8 @@ for val in bW.findAllMp3("static/Mp3/basics_s1"):
 ^ Stop coding at 3am...
 '''
 
+def getTime(fileName):
+	return re.findall("\d+\/(\d+)", fileName)
 
 def extractType(fileName):
 	return re.findall("pack\Dthe\D(\w+)_\d+m_en", fileName)[0]
