@@ -13,9 +13,9 @@ def index():
 	database = []
 	# {Descrition: blah, "lengths": {3: {},  5: {}, 10: {} }}
 	allInfo = extractAll(DIRECTORY)
-	for i in range(extractTotalDay(DIRECTORY)):
-		day = i + 1
-		tempInfo = {"Description": "Basics Day {}".format(day), "Files": []}
+	for i in range(1,11):
+		folder = DIRECTORY + "basics_s{}".format(i)
+		tempInfo = {"Folder": folder, "Description": "Basics Day {}".format(i), "Files": []}
 		for val in allInfo:
 			if val["Day"] == day:
 				time = val["Time"]
