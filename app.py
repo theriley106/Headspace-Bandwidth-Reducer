@@ -35,7 +35,6 @@ def index():
 				fileInfo["PartialFiles"].append(tempInfo)
 			permInfo["Files"].append(fileInfo)
 		database.append(permInfo)
-	print database
 	return render_template("index.html", DATABASE=database[:MAX_FILES])
 
 @app.route('/getStructure/<folder>/<timePeriod>')
