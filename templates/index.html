@@ -120,22 +120,25 @@ function wait(time) {
         }, time);
     });
 }
-
+var audios = new Array();
 
 async function streamAudio(sessionType, time){
+	stopAllAudio();
 	var url = "/getStructure/" + sessionType + "/" + time;
 	console.log(url);
 	jsonString = httpGet(url);
 	obj = JSON.parse(jsonString);
 	var prevElemTime = 0.0;
 	for (fileIndex in obj) {
+
 		// This is a NUMBER VALUE
 		listElem = obj[fileIndex];
 		console.log(listElem.Duration);
 		var fileName = "static/Mp3/" + sessionType + "/" + time + "/" + fileIndex + ".mp3";
 		console.log(fileName);
 		var audio = new Audio(fileName);
-       	audio.play();
+		audios.push(audio);
+		audio.play();
        	console.log("Waiting: " + ((listElem.End - prevElemTime) + listElem.Duration) * 1000);
        	await wait(((listElem.End - prevElemTime) + listElem.Duration) * 1000);
 
@@ -152,6 +155,15 @@ async function streamAudio(sessionType, time){
        var audio = document.getElementById(elemName);
        audio.play();
                  }
+
+
+
+function stopAllAudio(){
+	console.log(audios);
+	for (a in audios) {
+		audios[a].pause();
+	}
+}
 
 function resetElems() {
 
