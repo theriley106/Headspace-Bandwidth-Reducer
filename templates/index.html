@@ -105,7 +105,7 @@ function waitSeconds(iMilliSeconds) {
     }
 }
 
-function streamAudio(jsonString){
+function streamAudio(sessionType, time){
 	obj = JSON.parse(jsonString);
 	for (file in obj.Files) {
 		var audio = new Audio(file.Filename);
