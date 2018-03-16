@@ -122,27 +122,35 @@ function wait(time) {
 }
 var audios = new Array();
 
-async function streamAudio(sessionType, time){
+function setToPlay(audioFile, time, fileName) {
+setTimeout(function(){ audioFile.play(); console.log("Playing" + fileName);}, time);
+}
+
+function streamAudio(sessionType, time){
 	stopAllAudio();
 	var url = "/getStructure/" + sessionType + "/" + time;
 	console.log(url);
 	jsonString = httpGet(url);
 	obj = JSON.parse(jsonString);
-	var prevElemTime = 0.0;
+	var prevEnd = 0.0;
+	var fileName = "static/Mp3/" + sessionType + "/" + time + "/0" + ".mp3";
+   	var audio = new Audio(fileName);
+	audios.push(audio);
+	audio.play()
 	for (fileIndex in obj) {
 
 		// This is a NUMBER VALUE
 		listElem = obj[fileIndex];
-		console.log(listElem.Duration);
-		var fileName = "static/Mp3/" + sessionType + "/" + time + "/" + fileIndex + ".mp3";
-		console.log(fileName);
-		var audio = new Audio(fileName);
-		audios.push(audio);
-		audio.play();
-       	console.log("Waiting: " + ((listElem.End - prevElemTime) + listElem.Duration) * 1000);
-       	await wait(((listElem.End - prevElemTime) + listElem.Duration) * 1000);
+		var tempNum = parseInt(fileIndex) + 1;
+		console.log(tempNum);
+		if (tempNum < obj.length) {
+			var fileName = "static/Mp3/" + sessionType + "/" + time + "/" + tempNum + ".mp3";
 
-
+			var audio = new Audio(fileName);
+			audios.push(audio);
+			console.log(fileName + " will start playing at " + listElem.End + " Seconds");
+			setToPlay(audio, listElem.End*1000, fileName);
+			}
        }
     }
 
@@ -167,7 +175,10 @@ function stopAllAudio(){
 
 function resetElems() {
 
-
+	var highestTimeoutId = setTimeout(";");
+	for (var i = 0 ; i < highestTimeoutId ; i++) {
+	    clearTimeout(i);
+	}
 	var elems = [];
 	var times = [];
 	{% for fileInfo in DATABASE %}
