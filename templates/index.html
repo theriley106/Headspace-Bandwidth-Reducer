@@ -114,7 +114,11 @@ function httpGet(theUrl)
 }
 
 function streamAudio(sessionType, time){
-	ob = httpGet("{{ url_for('getStructure', folder=sessionType, timePeriod=time) }}");
+	var url = "/getStructure/" + sessionType + "/" + time;
+
+	console.log(url);
+
+	ob = httpGet(url);
 	console.log(ob);
 	obj = JSON.parse(jsonString);
 	for (file in obj.Files) {

@@ -21,8 +21,8 @@ def index():
 			timeVal = bandwidthModifier.getTime(val)
 			fileInfo["Duration"] = timeVal
 			fileInfo["FullFile"] = val
-
-			fileInfo["SessionType"] = folder
+			fileInfo["SessionType"] = folder[::-1].partition("/")[0][::-1]
+			print fileInfo["SessionType"]
 			fileInfo["Time"] = timeVal
 			fileInfo["PartialFiles"] = []
 			print '{}/{}.json'.format(folder, timeVal)
