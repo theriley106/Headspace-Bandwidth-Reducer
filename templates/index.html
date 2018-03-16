@@ -117,11 +117,13 @@ function streamAudio(sessionType, time){
 	var url = "/getStructure/" + sessionType + "/" + time;
 
 	console.log(url);
-
 	jsonString = httpGet(url);
 	obj = JSON.parse(jsonString);
-	for (file in obj.Files) {
-		var audio = new Audio(file.Filename);
+	for (fileIndex in obj) {
+		// This is a NUMBER VALUE
+		listElem = obj[fileIndex];
+		console.log(listElem.Duration);
+		var audio = new Audio("static/Mp3/" + sessionType + "/" + time + "/" + fileIndex + ".mp3");
        	audio.play();
        	waitSeconds(file.Duration * 1000);
                  }
