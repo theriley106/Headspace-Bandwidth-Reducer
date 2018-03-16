@@ -21,13 +21,14 @@ def index():
 			timeVal = bandwidthModifier.getTime(val)
 			fileInfo["Duration"] = timeVal
 			fileInfo["FullFile"] = val
+
+			fileInfo["SessionType"] = folder
+			fileInfo["Time"] = timeVal
 			fileInfo["PartialFiles"] = []
 			print '{}/{}.json'.format(folder, timeVal)
 			json_data = json.load(open('{}/{}.json'.format(folder, timeVal)))
 			for countVal, fileName in enumerate(bandwidthModifier.findAllMp3(folder + "/{}/".format(timeVal))):
 				tempInfo = {}
-				tempInfo["SessionType"] = folder
-				tempInfo["Time"] = timeVal
 				tempInfo["FileName"] = fileName
 				tempInfo["Duration"] = json_data[countVal-1]["Duration"]
 				tempInfo["Start"] = json_data[countVal-1]["Start"]
