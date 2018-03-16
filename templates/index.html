@@ -95,14 +95,8 @@ body {
 
 <script>
 
-function waitSeconds(iMilliSeconds) {
-    var counter= 0
-        , start = new Date().getTime()
-        , end = 0;
-    while (counter < iMilliSeconds) {
-        end = new Date().getTime();
-        counter = end - start;
-    }
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function httpGet(theUrl)
@@ -113,21 +107,41 @@ function httpGet(theUrl)
     return xmlHttp.responseText;
 }
 
-function streamAudio(sessionType, time){
-	var url = "/getStructure/" + sessionType + "/" + time;
+async function testWait() {
+    alert('going to wait for 5 second');
+    await wait(5000);
+    alert('finally wait is over');
+}
 
+function wait(time) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve();
+        }, time);
+    });
+}
+
+
+async function streamAudio(sessionType, time){
+	var url = "/getStructure/" + sessionType + "/" + time;
 	console.log(url);
 	jsonString = httpGet(url);
 	obj = JSON.parse(jsonString);
+	var prevElemTime = 0.0;
 	for (fileIndex in obj) {
 		// This is a NUMBER VALUE
 		listElem = obj[fileIndex];
 		console.log(listElem.Duration);
-		var audio = new Audio("static/Mp3/" + sessionType + "/" + time + "/" + fileIndex + ".mp3");
+		var fileName = "static/Mp3/" + sessionType + "/" + time + "/" + fileIndex + ".mp3";
+		console.log(fileName);
+		var audio = new Audio(fileName);
        	audio.play();
-       	waitSeconds(file.Duration * 1000);
-                 }
-             }
+       	console.log("Waiting: " + ((listElem.End - prevElemTime) + listElem.Duration) * 1000);
+       	await wait(((listElem.End - prevElemTime) + listElem.Duration) * 1000);
+
+
+       }
+    }
 
   function play(elemName){
 	   var headerOutput = document.getElementById("headerOutput");
