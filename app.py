@@ -39,7 +39,7 @@ def index():
 @app.route('/getStructure/<folder>/<timePeriod>')
 def getStructure(folder, timePeriod):
 	# This function grabs the file/JSON indicating file splits
-	return jsoninfy(json.load(open(DIRECTORY + folder + "/{}".format(timePeriod))))
+	return jsonify(json.load(open(DIRECTORY + folder + "/{}".format(timePeriod))))
 
 @app.route('/grabFile/<fileName>', methods=["POST"])
 def grabFile(fileName):
