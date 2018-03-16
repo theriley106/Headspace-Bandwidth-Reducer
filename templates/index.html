@@ -105,6 +105,14 @@ function waitSeconds(iMilliSeconds) {
     }
 }
 
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
 function streamAudio(sessionType, time){
 	obj = JSON.parse(jsonString);
 	for (file in obj.Files) {
@@ -165,7 +173,7 @@ function resetElems() {
 					{% for fileInfo in DATABASE %}
 						<h4><font color="white">{{ fileInfo.Description }}</font></h4>
 						{% for soundClip in fileInfo.Files %}
-								<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();document.getElementById("{{ soundClip.Elem }}Span").innerHTML = "Playing";streamAudio("{{ soundClip.SessionType }}", "{{ soundClip.Time }}"'>
+								<div data-component="mindful-button" id="ember899" style="margin-left: 12px;" class="clickButton"><div tabindex="0" aria-label="Change current variation from 5 min" role="button"onclick='resetElems();document.getElementById("{{ soundClip.Elem }}Span").innerHTML = "Playing";streamAudio("{{ soundClip.SessionType }}", "{{ soundClip.Time }}");'>
 									<audio preload="none" id="{{ soundClip.Elem }}" src="{{ soundClip.Filename }}" ></audio>
 									<!---->  <span id="{{ soundClip.Elem }}Span">
 									                    {{ soundClip.Time }} min
