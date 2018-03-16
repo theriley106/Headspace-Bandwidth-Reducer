@@ -36,8 +36,8 @@ def index():
 	print database
 	return render_template("index.html", DATABASE=database[:MAX_FILES])
 
-@app.route('/getStructure/<folder>/<timePeriod>', methods=["POST"])
-def grabFile(folder, timePeriod):
+@app.route('/getStructure/<folder>/<timePeriod>')
+def getStructure(folder, timePeriod):
 	# This function grabs the file/JSON indicating file splits
 	return jsoninfy(json.load(open(DIRECTORY + folder + "/{}".format(timePeriod))))
 
