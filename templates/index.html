@@ -119,8 +119,7 @@ function streamAudio(sessionType, time){
 	console.log(url);
 
 	ob = httpGet(url);
-	console.log(ob);
-	obj = JSON.parse(jsonString);
+	obj = JSON.parse(ob);
 	for (file in obj.Files) {
 		var audio = new Audio(file.Filename);
        	audio.play();
