@@ -114,6 +114,8 @@ function httpGet(theUrl)
 }
 
 function streamAudio(sessionType, time){
+	ob = httpGet("{{ url('getStructure', args=[sessionType, time]) }}");
+	console.log(ob);
 	obj = JSON.parse(jsonString);
 	for (file in obj.Files) {
 		var audio = new Audio(file.Filename);
