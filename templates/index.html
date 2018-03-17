@@ -184,8 +184,8 @@ function streamAudio(sessionType, time){
 	   jsonString = httpGet(fileSizeURL);
 	   fileInfo = JSON.parse(jsonString);
 	   headerOutput.innerHTML = "<h3>Playing: <b>" + fileName + "</b></h3>";
-	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + fileInfo.OldValue + "</b></h4>";
-	   headerOutput.innerHTML += "<h4>New File Size: <b>" + fileInfo.NewValue + "</b></h4>";
+	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + fileInfo.OldValue/1000 + "</b></h4>";
+	   headerOutput.innerHTML += "<h4>New File Size: <b>" + fileInfo.NewValue/1000 + "</b></h4>";
 	   headerOutput.innerHTML += "<h4>Bandwidth Reduction: <b>" + fileName + "</b></h4>";
                  }
 
