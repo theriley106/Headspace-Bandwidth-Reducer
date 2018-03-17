@@ -5,6 +5,7 @@ import bandwidthModifier
 from categorizeFiles import *
 import operator
 import json
+from functools import partial
 DIRECTORY = "static/Mp3/"
 MAX_FILES = 7
 app = Flask(__name__)
@@ -42,6 +43,20 @@ def index():
 @app.route('/getSize/<fileName>')
 def getFileSize(fileName):
 	return str(os.path.getsize(fileName.replace("-", "/")))
+
+def getFolderSize(p):
+   prepend = partial(os.path.join, p)
+   return sum([(os.path.getsize(f) if os.path.isfile(f) else getFolderSize(f)) for f in map(prepend, os.listdir(p))])
+
+@app.route('/getAllSize/<sessionType>/<timeVal>')
+def getAllFileSize(sessionType, timeVal):
+	info = {}
+	oldVal = os.path.getsize("{}{}/{}.mp3".format(DIRECTORY, sessionType, timeVal))
+	info['OldValue'] = oldVal
+	print('{}{}/{}/'.format(DIRECTORY, sessionType, timeVal))
+	newVal = getFolderSize('{}{}/{}/'.format(DIRECTORY, sessionType, timeVal))
+	info["NewValue"] = newVal
+	return jsonify(info)
 
 
 @app.route('/getStructure/<folder>/<timePeriod>')
