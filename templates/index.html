@@ -126,6 +126,11 @@ function newOutput(message) {
 	outputVal.innerHTML += message;
 }
 
+function oldOutput(message) {
+	var outputVal = document.getElementById("oldOutput");
+	outputVal.innerHTML += message;
+}
+
 var audios = new Array();
 
 function setToPlay(audioFile, time, fileName, sessionType, tempNum, timeNum) {
@@ -143,6 +148,7 @@ function streamAudio(sessionType, time){
    	var audio = new Audio(fileName);
 	audios.push(audio);
 	setToPlay(audio, 0, fileName, sessionType, 0, time);
+	oldOutput("<b>Playing " + sessionType + "/" + time + ".mp3" + "</b><br>");
 	for (fileIndex in obj) {
 
 		// This is a NUMBER VALUE
@@ -154,8 +160,8 @@ function streamAudio(sessionType, time){
 
 			var audio = new Audio(fileName);
 			audios.push(audio);
-			newOutput(sessionType + "/" + time + "/" + tempNum + ".mp3 starts at " + listElem.End + "s" + "<br>");
-			newOutput("time.sleep(" + listElem.Duration + ")" + "<br>");
+			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 starts at " + listElem.End + "s" + "</b><br>");
+			newOutput("<b>time.sleep(" + listElem.Duration + ")" + "</b><br>");
 			setToPlay(audio, listElem.End*1000, fileName, sessionType, tempNum, time);
 			}
        }
