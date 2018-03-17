@@ -150,13 +150,18 @@ function streamAudio(sessionType, time){
 		listElem = obj[fileIndex];
 		// This assigns listElem as the actual object rather than the index number
 		var tempNum = parseInt(fileIndex) + 1;
-		console.log(tempNum);
+		// This tells it to start at 1.mp3 instead of 0.mp3
 		if (tempNum < obj.length) {
+			// This makes it iterate through all mp3 files
 			var fileName = "static/Mp3/" + sessionType + "/" + time + "/" + tempNum + ".mp3";
-
+			// Assigns filename of the mp3 file being played
 			var audio = new Audio(fileName);
+			// Creates new audio object
 			audios.push(audio);
+			// Adds this audio object to the array of audio objects
+			// This is there so we can "Stop" all of them when another button is clicked
 			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 starts at " + listElem.End + "s" + "</b><br>");
+			// This adds the new file
 			newOutput("<b>time.sleep(" + listElem.Duration + ")" + "</b><br>");
 			setToPlay(audio, listElem.End*1000, fileName, sessionType, tempNum, time);
 			}
