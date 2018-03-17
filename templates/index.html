@@ -107,19 +107,7 @@ function httpGet(theUrl)
     return xmlHttp.responseText;
 }
 
-async function testWait() {
-    alert('going to wait for 5 second');
-    await wait(5000);
-    alert('finally wait is over');
-}
 
-function wait(time) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve();
-        }, time);
-    });
-}
 
 function newOutput(message) {
 	var outputVal = document.getElementById("newOutput");
