@@ -123,16 +123,28 @@ setTimeout(function(){ audioFile.play(); }, time);
 
 function streamAudio(sessionType, time){
 	stopAllAudio();
+	// This will stop all playing audio
 	var url = "/getStructure/" + sessionType + "/" + time;
-	console.log(url);
+	// This will return file structure
 	jsonString = httpGet(url);
+	// This is the actual file structure
 	obj = JSON.parse(jsonString);
-	var prevEnd = 0.0;
+	// Converting string to json so we can interact with it
 	var fileName = "static/Mp3/" + sessionType + "/" + time + "/0" + ".mp3";
+	// This is the filename for the actual mp3File
    	var audio = new Audio(fileName);
+   	// Creates new audio object - not in the loop because the first val in
+   	// structure response is 1.mp3 instead of 0.mp3
 	audios.push(audio);
+	// Adds this audio object to the array of audio objects
+	// This is there so we can "Stop" all of them when another button is clicked
 	setToPlay(audio, 0, fileName, sessionType, 0, time);
+	// This tells the progrma to start playing this audio file in 0 seconds
+	// Setting time as 0 will make it play immediately
 	oldOutput("<b>Playing " + sessionType + "/" + time + ".mp3" + "</b><br>");
+	// Adds the file info to the "OldOutput" div
+	// Since this web app is only using the new output method of distributing
+	// audio, this is just text saying what the old method *would* have been.
 	for (fileIndex in obj) {
 
 		// This is a NUMBER VALUE
