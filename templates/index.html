@@ -194,6 +194,11 @@ function stopAllAudio(){
 
 function resetElems() {
 
+	document.getElementById("newOutput").innerHTML = "";
+	// Resets the right div
+	document.getElementById("oldOutput").innerHTML = "";
+	// Resets the main div
+
 	var highestTimeoutId = setTimeout(";");
 	// This sets a new timeout and grabs the number
 	for (var i = 0 ; i < highestTimeoutId ; i++) {
@@ -222,7 +227,7 @@ function resetElems() {
 		// this is the actual element value
 		document.getElementById(ele + "Span").innerHTML = times[i] + " MIN";
 		// Sets that element back to 3 Min, 5 Min, etc.
-		}
+	}
 	}
    </script>
 
