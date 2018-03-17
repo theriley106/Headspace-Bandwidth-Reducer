@@ -92,7 +92,7 @@ def splitAudio(audioFile):
 	return timeStamps
 
 if __name__ == '__main__':
-	audioFile = "3MinuteBasics.mp3"
+	audioFile = "3.mp3"
 	jsonInfo = splitAudio(audioFile)
 	with open('{}.json'.format(audioFile.partition(".")[0]), 'w') as fp:
 		json.dump(jsonInfo, fp)
