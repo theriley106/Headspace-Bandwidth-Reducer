@@ -39,6 +39,11 @@ def index():
 		database.append(permInfo)
 	return render_template("index.html", DATABASE=database[:MAX_FILES])
 
+@app.route('/getSize/<fileName>')
+def getFileSize(fileName):
+	return str(os.path.getsize(fileName.replace("-", "/")))
+
+
 @app.route('/getStructure/<folder>/<timePeriod>')
 def getStructure(folder, timePeriod):
 	# This function grabs the file/JSON indicating file splits

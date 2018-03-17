@@ -117,10 +117,15 @@ function oldOutput(message) {
 	outputVal.innerHTML += message;
 }
 
+function returnFileNameParam(fileName) {
+	// This is a hacky way of passing parameters through HTML
+	return fileName.replace(/\//g, '-');
+}
+
 var audios = new Array();
 
 function setToPlay(audioFile, time, fileName, sessionType, tempNum, timeNum) {
-setTimeout(function(){ audioFile.play(); }, time);
+	setTimeout(function(){ audioFile.play(); displayInfo(audioFile, time, fileName, sessionType, tempNum, timeNum); }, time);
 }
 
 function streamAudio(sessionType, time){
@@ -173,14 +178,14 @@ function streamAudio(sessionType, time){
        }
     }
 
-  function play(elemName){
+  function displayInfo(audioFile, time, fileName, sessionType, tempNum, timeNum, tFileName){
 	   var headerOutput = document.getElementById("headerOutput");
-	   headerOutput.innerHTML = "<h3>Playing: <b>" + elemName + "</b></h3>";
-	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + elemName + "</b></h4>";
-	   headerOutput.innerHTML += "<h4>New File Size: <b>" + elemName + "</b></h4>";
-	   headerOutput.innerHTML += "<h4>Bandwidth Reduction: <b>" + elemName + "</b></h4>";
-       var audio = document.getElementById(elemName);
-       audio.play();
+	   var fileSizeURL = "/getSize/" + returnFileNameParam(fileName);
+	   var fileSize = httpGet(fileSizeURL);
+	   headerOutput.innerHTML = "<h3>Playing: <b>" + fileName + "</b></h3>";
+	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + fileName + "</b></h4>";
+	   headerOutput.innerHTML += "<h4>New File Size: <b>" + fileSize + "</b></h4>";
+	   headerOutput.innerHTML += "<h4>Bandwidth Reduction: <b>" + fileName + "</b></h4>";
                  }
 
 
