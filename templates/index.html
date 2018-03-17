@@ -146,9 +146,9 @@ function streamAudio(sessionType, time){
 	// Since this web app is only using the new output method of distributing
 	// audio, this is just text saying what the old method *would* have been.
 	for (fileIndex in obj) {
-
-		// This is a NUMBER VALUE
+		// The json object is a list, so this is the INDEX of all items in the list
 		listElem = obj[fileIndex];
+		// This assigns listElem as the actual object rather than the index number
 		var tempNum = parseInt(fileIndex) + 1;
 		console.log(tempNum);
 		if (tempNum < obj.length) {
