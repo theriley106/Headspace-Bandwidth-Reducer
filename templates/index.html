@@ -100,13 +100,13 @@ function sleep(ms) {
 }
 
 function httpGet(theUrl)
+// The network request grabs the json containing mp3 structure
 {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-
 
 
 function newOutput(message) {
