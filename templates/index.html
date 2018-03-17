@@ -92,7 +92,7 @@ body {
 
 
 <body bgcolor="#F48C45">
-
+<!-- This is the headspace background color from the app -->
 <script>
 
 function httpGet(theUrl)
@@ -106,11 +106,13 @@ function httpGet(theUrl)
 
 
 function newOutput(message) {
+	// This adds text to the new output div
 	var outputVal = document.getElementById("newOutput");
 	outputVal.innerHTML += message;
 }
 
 function oldOutput(message) {
+	// This adds text to the old output div
 	var outputVal = document.getElementById("oldOutput");
 	outputVal.innerHTML += message;
 }
