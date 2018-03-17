@@ -195,26 +195,33 @@ function stopAllAudio(){
 function resetElems() {
 
 	var highestTimeoutId = setTimeout(";");
+	// This sets a new timeout and grabs the number
 	for (var i = 0 ; i < highestTimeoutId ; i++) {
+		// This iterates through all timeout nums
+		// up until the highestTimeoutId to stop them
 	    clearTimeout(i);
 	}
+	// ^ Hacky way of stopping all timers
 	var elems = [];
+	// This is the element name
 	var times = [];
+	// Contains the description time of the file; ie 3, 5, 10
 	{% for fileInfo in DATABASE %}
 		{% for soundClip in fileInfo.Files %}
 			elems.push("{{ soundClip.Elem }}");
-			times.push("{{ soundClip.Time }}")
+			times.push("{{ soundClip.Time }}");
 		{% endfor %}
 	{% endfor %}
 	var i;
+	// for the loop
 	for (ele in elems) {
+		// This resets all buttons on the page
 		i = ele;
+		// saves for later use in lines 226
 		ele = elems[ele];
-		console.log(ele);
+		// this is the actual element value
 		document.getElementById(ele + "Span").innerHTML = times[i] + " MIN";
-		sound = document.getElementsByTagName("audio");
-		for(var i = 0; i < sound.length; i++) {
-			sound[i].pause();
+		// Sets that element back to 3 Min, 5 Min, etc.
 		}
 	}}
    </script>
