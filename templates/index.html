@@ -122,6 +122,7 @@ setTimeout(function(){ audioFile.play(); }, time);
 }
 
 function streamAudio(sessionType, time){
+	// This is the function that plays the audio
 	stopAllAudio();
 	// This will stop all playing audio
 	var url = "/getStructure/" + sessionType + "/" + time;
@@ -183,7 +184,7 @@ function streamAudio(sessionType, time){
 
 
 function stopAllAudio(){
-	console.log(audios);
+	// This stops all audio elements that are playing on the page
 	for (a in audios) {
 		audios[a].pause();
 	}
