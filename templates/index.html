@@ -128,8 +128,8 @@ function newOutput(message) {
 
 var audios = new Array();
 
-function setToPlay(audioFile, time, fileName) {
-setTimeout(function(){ audioFile.play(); console.log("Playing" + fileName);}, time);
+function setToPlay(audioFile, time, fileName, sessionType, tempNum, timeNum) {
+setTimeout(function(){ audioFile.play(); }, time);
 }
 
 function streamAudio(sessionType, time){
@@ -142,7 +142,7 @@ function streamAudio(sessionType, time){
 	var fileName = "static/Mp3/" + sessionType + "/" + time + "/0" + ".mp3";
    	var audio = new Audio(fileName);
 	audios.push(audio);
-	audio.play()
+	setToPlay(audio, 0, fileName, sessionType, 0, time);
 	for (fileIndex in obj) {
 
 		// This is a NUMBER VALUE
@@ -154,8 +154,9 @@ function streamAudio(sessionType, time){
 
 			var audio = new Audio(fileName);
 			audios.push(audio);
-			newOutput(fileName + " will start playing at " + listElem.End + " Seconds");
-			setToPlay(audio, listElem.End*1000, fileName);
+			newOutput(sessionType + "/" + time + "/" + tempNum + ".mp3 starts at " + listElem.End + "s" + "<br>");
+			newOutput("time.sleep(" + listElem.Duration + ")" + "<br>");
+			setToPlay(audio, listElem.End*1000, fileName, sessionType, tempNum, time);
 			}
        }
     }
