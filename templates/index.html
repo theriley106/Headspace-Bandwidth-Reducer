@@ -161,9 +161,11 @@ function streamAudio(sessionType, time){
 			// Adds this audio object to the array of audio objects
 			// This is there so we can "Stop" all of them when another button is clicked
 			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 starts at " + listElem.End + "s" + "</b><br>");
-			// This adds the new file
+			// This ADDS the new file output to the div
 			newOutput("<b>time.sleep(" + listElem.Duration + ")" + "</b><br>");
+			// This ADDS the sleep output after this file to the div
 			setToPlay(audio, listElem.End*1000, fileName, sessionType, tempNum, time);
+			// This sets an event to play the audio file at obj['end'] - prevElem
 			}
        }
     }
