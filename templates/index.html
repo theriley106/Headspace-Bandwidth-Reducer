@@ -231,8 +231,8 @@ function streamAudio(sessionType, time){
 	   oldSize = (fileInfo.OldValue/1000).toFixed(2);
 	   diffValue = (((oldSize - newSize) / oldSize) * 100).toFixed(2);
 	   headerOutput.innerHTML = "<h3>Playing: <b>" + fileName + "</b></h3>";
-	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + oldSize + "</b></h4>";
-	   headerOutput.innerHTML += "<h4>New File Size: <b>" + newSize + "</b></h4>";
+	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + oldSize + "kb</b></h4>";
+	   headerOutput.innerHTML += "<h4>New File Size: <b>" + newSize + "kb</b></h4>";
 	   headerOutput.innerHTML += "<h4>Bandwidth Reduction: <b>" + diffValue + "%</b></h4>";
 
 	   headerOutput.innerHTML += "<h3>Remaining: <b id='timer'></b></h3>";
