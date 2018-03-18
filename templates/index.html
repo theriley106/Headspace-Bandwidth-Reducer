@@ -156,7 +156,7 @@ function returnFileNameParam(fileName) {
 
 var audios = new Array();
 
-function setToPlay(audioFile, time, fileName, sessionType, tempNum, timeNum) {
+function setToPlay(audioFile, time, fileName, sessionType, tempNum, timeNum, timeDur) {
 	var url = "/getLength/" + returnFileNameParam(fileName);
 	// This will return the audio length
 	var jsonString = httpGet(url);
@@ -164,8 +164,10 @@ function setToPlay(audioFile, time, fileName, sessionType, tempNum, timeNum) {
 	var ob = JSON.parse(jsonString);
 	// Parses JSON so it can be used
 	var audioLength = ob.Length;
-	console.log(audioLength);
 	setTimeout(function(){ startTimer(audioLength);audioFile.play();displayInfo(audioFile, time, fileName, sessionType, tempNum, timeNum); }, time);
+	console.log(time);
+	console.log(time-timeDur);
+	setTimeout(function() { document.getElementById("playingInfo").innerHTML = "<h3 id='playingInfo'>Ayy it works: <b>" + fileName + "</b></h3>"; }, time-(time-timeDur));
 }
 
 function streamAudio(sessionType, time){
@@ -188,7 +190,7 @@ function streamAudio(sessionType, time){
 	// This is there so we can "Stop" all of them when another button is clicked
 	var prevEnd = 0;
 	// This sets it to 0 before the loop
-	setToPlay(audio, 0, fileName, sessionType, 0, time);
+	setToPlay(audio, 0, fileName, sessionType, 0, time, (obj[0].End-obj[0].Duration) * 1000);
 	// This tells the progrma to start playing this audio file in 0 seconds
 	// Setting time as 0 will make it play immediately
 	oldOutput("<b>Playing " + sessionType + "/" + time + ".mp3" + "</b><br>");
@@ -216,7 +218,7 @@ function streamAudio(sessionType, time){
 			// This ADDS the sleep output after this file to the div
 			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 plays for " + (obj[tempNum].End - obj[tempNum].Duration).toFixed(2) + "s" + "</b><br>");
 			// This ADDS the new file output to the div
-			setToPlay(audio, listElem.End*1000, fileName, sessionType, tempNum, time);
+			setToPlay(audio, listElem.End*1000, fileName, sessionType, tempNum, time, (listElem.End*1000)-(listElem.Duration*1000));
 			// This sets an event to play the audio file at obj['end'] - prevElem
 			}
        }
@@ -230,7 +232,7 @@ function streamAudio(sessionType, time){
 	   newSize = (fileInfo.NewValue/1000).toFixed(2);
 	   oldSize = (fileInfo.OldValue/1000).toFixed(2);
 	   diffValue = (((oldSize - newSize) / oldSize) * 100).toFixed(2);
-	   headerOutput.innerHTML = "<h3>Playing: <b>" + fileName + "</b></h3>";
+	   headerOutput.innerHTML = "<h3 id='playingInfo'>Playing: <b>" + fileName + "</b></h3>";
 	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + oldSize + "kb</b></h4>";
 	   headerOutput.innerHTML += "<h4>New File Size: <b>" + newSize + "kb</b></h4>";
 	   headerOutput.innerHTML += "<h4>Bandwidth Reduction: <b>" + diffValue + "%</b></h4>";
