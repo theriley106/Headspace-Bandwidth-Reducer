@@ -195,7 +195,8 @@ function streamAudio(sessionType, time){
 	// Adds the file info to the "OldOutput" div
 	// Since this web app is only using the new output method of distributing
 	// audio, this is just text saying what the old method *would* have been.
-
+	newOutput("<b>" + sessionType + "/" + time + "/0.mp3 plays for " + (obj[0].End - obj[0].Duration).toFixed(2) + "s" + "</b><br>");
+			// This ADDS the new file output to the div
 	for (fileIndex in obj) {
 		// The json object is a list, so this is the INDEX of all items in the list
 		listElem = obj[fileIndex];
@@ -213,9 +214,8 @@ function streamAudio(sessionType, time){
 			// This is there so we can "Stop" all of them when another button is clicked
 			newOutput("<b>time.sleep(" + listElem.Duration + ")" + "</b><br>");
 			// This ADDS the sleep output after this file to the div
-			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 starts at " + listElem.End + "s" + "</b><br>");
+			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 plays for " + (obj[tempNum].End - obj[tempNum].Duration).toFixed(2) + "s" + "</b><br>");
 			// This ADDS the new file output to the div
-			console.log(listElem.Start - prevEnd);
 			setToPlay(audio, listElem.End*1000, fileName, sessionType, tempNum, time);
 			// This sets an event to play the audio file at obj['end'] - prevElem
 			}
