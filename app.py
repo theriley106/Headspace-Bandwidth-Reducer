@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, request, url_for, redirect, Markup, Response, send_file, send_from_directory, make_response, jsonify
 import os
+from mutagen.mp3 import MP3
 import time
 import bandwidthModifier
 from categorizeFiles import *
@@ -40,9 +41,15 @@ def index():
 		database.append(permInfo)
 	return render_template("index.html", DATABASE=database[:MAX_FILES])
 
-@app.route('/getSize/<fileName>')
-def getFileSize(fileName):
-	return str(os.path.getsize(fileName.replace("-", "/")))
+@app.route('/getLength/<fileName>')
+def getFileLength(fileName):
+	fileName = str(fileName.replace("-", "/"))
+	print fileName
+	audio = MP3(fileName)
+	info = {}
+	info["Length"] = int(audio.info.length * 1000)
+	print info
+	return jsonify(info)
 
 def getFolderSize(p):
    prepend = partial(os.path.join, p)
