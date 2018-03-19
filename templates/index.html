@@ -219,7 +219,6 @@ function streamAudio(sessionType, time){
 		if (tempNum < obj.length) {
 			// This makes it iterate through all mp3 files
 			var fileName = "static/Mp3/" + sessionType + "/" + time + "/" + tempNum + ".mp3";
-			console.log(fileName);
 			// Assigns filename of the mp3 file being played
 			var audio = new Audio(fileName);
 			// Creates new audio object
