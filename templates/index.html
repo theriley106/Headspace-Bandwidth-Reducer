@@ -95,49 +95,6 @@ body {
 <!-- This is the headspace background color from the app -->
 <script>
 
-
-
-
-function startTimer(ms){
-	var count=ms;
-	var start = new Date();
-	var counter=setInterval(timer, 1); //1000 will  run it every 1 second
-
-	function timer(){
-	  var left = count - (new Date() - start);
-
-	  if (left <= 0){
-	    clearInterval(counter);
-	    document.getElementById("timer").innerHTML = msToTime(0) + " seconds";
-	    document.getElementById("playingInfo").innerHTML = "<h3 id='playingInfo'><center><b>Silence...</b></center></h3>";
-	    return;
-	  }
-	  document.getElementById("timer").innerHTML = msToTime(left) + " seconds"; // watch for spelling
-	}
-}
-
-function msToTime(s) {
-  var ms = s % 1000;
-  s = (s - ms) / 1000;
-  return s + ':' + pad(ms, 3);
-}
-
-function pad(n, width, z) {
-  z = z || '0';
-  n = n + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
-
-function httpGet(theUrl)
-// The network request grabs the json containing mp3 structure
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-}
-
-
 function newOutput(message) {
 	// This adds text to the new output div
 	var outputVal = document.getElementById("newOutput");
@@ -314,6 +271,47 @@ function resetElems() {
 		// Sets that element back to 3 Min, 5 Min, etc.
 	}
 	}
+
+	/////////////////// THESE FUNCTIONS WERE GRABBED FROM THIRD PARTY SOURCES - THE TIMER & THE GET REQUEST USING JAVASCRIPT    ///////////////////
+
+	function startTimer(ms){
+		var count=ms;
+		var start = new Date();
+		var counter=setInterval(timer, 1); //1000 will  run it every 1 second
+		function timer(){
+		  var left = count - (new Date() - start);
+		  if (left <= 0){
+		    clearInterval(counter);
+		    document.getElementById("timer").innerHTML = msToTime(0) + " seconds";
+		    document.getElementById("playingInfo").innerHTML = "<h3 id='playingInfo'><center><b>Silence...</b></center></h3>";
+		    return;
+		  }
+		  document.getElementById("timer").innerHTML = msToTime(left) + " seconds"; // watch for spelling
+		}
+	}
+
+	function msToTime(s) {
+	  var ms = s % 1000;
+	  s = (s - ms) / 1000;
+	  return s + ':' + pad(ms, 3);
+	}
+
+	function pad(n, width, z) {
+	  z = z || '0';
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+	}
+
+	function httpGet(theUrl)
+	// The network request grabs the json containing mp3 structure
+	{
+	    var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+	    xmlHttp.send( null );
+	    return xmlHttp.responseText;
+	}
+
+
    </script>
 
 
