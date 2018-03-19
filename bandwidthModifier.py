@@ -1,9 +1,17 @@
 import os
+# This is used for os.path to get filesize
 import commands
+# This is used to get command outputs
 import re
+# Regex for string search & match
 from mutagen.mp3 import MP3
+# Mutagen is used to get audio length
 import time
+# Time is used for actually playing the audio
 import json
+# JSON is used for reading and storing file structure
+
+
 
 #os.rename(val, "static/Mp3/{}/{}.mp3".format(extractType(val), re.findall("pack\Dthe\D\w+_(\d+)m_en", val)[0]))
 #^ lol I have no idea
@@ -17,29 +25,43 @@ for val in bW.findAllMp3("static/Mp3/basics_s1"):
 '''
 
 def checkText(text):
+	# Checks to see if the a file contains only digits
     return int(text) if text.isdigit() else text
 
 def sortKey(fileName):
+	# This sorts the file names by meditation session duration
 	head, tail = os.path.split(fileName)
+	# Splits the file into a tuple containing actual file name
 	return [ checkText(c) for c in re.split('(\d+)', tail) ]
+	# Returns sorted list
 
 def getTime(fileName):
+	# Converts basics_s1/3.mp3 into 3
 	return re.findall("\d+\/(\d+)", fileName)[0]
+	# Returns string
 
 def extractType(fileName):
+	# Converts basics_s1/3.mp3 into basics_s1
 	return re.findall("pack\Dthe\D(\w+)_\d+m_en", fileName)[0]
+	# Returns string
 
 def massFindMp3():
+	# Searches folders and nested folders for mp3 files
 	return [val for sublist in [[os.path.join(i[0], j) for j in i[2] if j.endswith('.mp3')] for i in os.walk('./')] for val in sublist]
+	# Returns list
 
 def renameFile(fileName):
+	# Mainly used as a temp way of bulk renaming files from the original file names
 	return "static/Mp3/{}.mp3".format(re.findall("pack\Dthe\D(\w+)_en", fileName)[0])
+	# Structure: DIRECTORY/SessionType/Duration.mp3
 
 def findTotalSilence(audioFile):
+	# This sums the total of silence durations in the file structure
 	totalSilence = 0
 	for val in getSilenceTimestamps(audioFile):
 		totalSilence += val['Duration']
 	return totalSilence
+	# Returns float
 
 def findAllMp3(directory):
 	listOfFiles = []
