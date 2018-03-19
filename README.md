@@ -10,4 +10,4 @@ By seperating the files at points of extended silence, we can reduce server-side
 I have created a proof of concept application that successfully reduces audio related Bandwidth costs...
 
 
-[![N|Solid](static/AudioExample.png)](#)
+[![N|Solid](static/AudioExample1.png)](#)
