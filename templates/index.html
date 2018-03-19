@@ -185,6 +185,7 @@ function streamAudio(sessionType, time){
 	// This is the actual file structure
 	obj = JSON.parse(jsonString);
 	// Converting string to json so we can interact with it
+	window.objectStructure = obj;
 	var fileName = "static/Mp3/" + sessionType + "/" + time + "/0" + ".mp3";
 	// This is the filename for the actual mp3File
    	var audio = new Audio(fileName);
