@@ -1,3 +1,4 @@
+# App.py is the backend for the API & the Web App
 from flask import Flask, request, render_template, request, url_for, redirect, Markup, Response, send_file, send_from_directory, make_response, jsonify
 # Flask is used for the web app
 import os
