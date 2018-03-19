@@ -141,18 +141,23 @@ function httpGet(theUrl)
 function newOutput(message) {
 	// This adds text to the new output div
 	var outputVal = document.getElementById("newOutput");
+	// Newoutput is the id of the right div
 	outputVal.innerHTML += message;
+	// Updates the div with whatever text the message variable holds
 }
 
 function oldOutput(message) {
 	// This adds text to the old output div
 	var outputVal = document.getElementById("oldOutput");
+	// Oldoutput is the id of the left div
 	outputVal.innerHTML += message;
+	// Updates the div with whatever text the message variable holds
 }
 
 function returnFileNameParam(fileName) {
 	// This is a hacky way of passing parameters through HTML
 	return fileName.replace(/\//g, '-');
+	// This removes all instances of "/" and replaces them with "-"
 }
 
 var audios = new Array();
@@ -161,9 +166,13 @@ function setToPlay(audioFile, time, fileName, sessionType, timeNum, indexNum, fi
 	var audioLength = audioLengthDB[indexNum];
 	// This is the actual length of the mp3 file being played
 	setTimeout(function(){
+		// This will make the function go off in the future - defined by the time var
 		startTimer(audioLength);
+		// This starts that updating timer with the timer id in the top div
 		audioFile.play();
+		// This will play the audio file
 		displayInfo(fileName, sessionType, timeNum, fileInfo);
+		// This updates that div to display info about the audio file that is being played
 	}, time);
 	// This outputs all info about the file
 
