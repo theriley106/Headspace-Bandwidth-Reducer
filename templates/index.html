@@ -158,17 +158,7 @@ function returnFileNameParam(fileName) {
 var audios = new Array();
 
 function setToPlay(audioFile, time, fileName, sessionType, timeNum, indexNum) {
-	console.log("indexNum " + indexNum);
-	var url = "/getLength/" + returnFileNameParam(fileName);
-	// This will return the audio length
-	var jsonString = httpGet(url);
-	// Response is sent as json
-	var ob = JSON.parse(jsonString);
-	// Parses JSON so it can be used
-	var audioLength = ob.Length;
-	console.log("OG " + audioLength);
-	var newAudioLength = audioLengthDB[indexNum];
-	console.log("New " + newAudioLength);
+	var audioLength = audioLengthDB[indexNum];
 	// This is the actual length of the mp3 file being played
 	setTimeout(function(){
 		startTimer(audioLength);
