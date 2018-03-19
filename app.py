@@ -1,15 +1,21 @@
 from flask import Flask, request, render_template, request, url_for, redirect, Markup, Response, send_file, send_from_directory, make_response, jsonify
+# Flask is used for the web app
 import os
+# OS is used to transfer files and return filesize information
 from mutagen.mp3 import MP3
-import time
+# Mutagen is used to get Mp3 length
 import bandwidthModifier
-from categorizeFiles import *
-import operator
+# This is the second main part of the project - the findAllMp3 function is used frequently in the web app
 import json
+# Json is used to read file structure
 from functools import partial
+# This is used to get total folder size
 DIRECTORY = "static/Mp3/"
+# This is directory of Mp3 files/Meditation session audio
 MAX_FILES = 7
+# number of sessions in the web app, can be changed but the HTML template is formatted based on MAX_FILES=7
 app = Flask(__name__)
+# Init the flask app
 
 @app.route('/')
 def index():
@@ -75,27 +81,37 @@ def index():
 
 @app.route('/getLength/<fileName>')
 def getFileLength(fileName):
+	# Returns a specific file length as json
 	fileName = str(fileName.replace("-", "/"))
-	print fileName
+	# "/" can't be in a URL so a javascript function replace all backslashes with dashes
 	audio = MP3(fileName)
+	# Loads audio into Mutagen
 	info = {}
+	# This dictionary is converted to json and returned
 	info["Length"] = int(audio.info.length * 1000)
-	print info
+	# Holds the audio length into the info dictionary.  Audio length is in Seconds, and we need ms for the startTimer javascript function.
 	return jsonify(info)
 
 def getFolderSize(p):
-   prepend = partial(os.path.join, p)
-   return sum([(os.path.getsize(f) if os.path.isfile(f) else getFolderSize(f)) for f in map(prepend, os.listdir(p))])
+	# This sums up all of the file sizes in a folder.  This is useful for calculating file size differences
+	prepend = partial(os.path.join, p)
+	return sum([(os.path.getsize(f) if os.path.isfile(f) else getFolderSize(f)) for f in map(prepend, os.listdir(p))])
 
 @app.route('/getAllSize/<sessionType>/<timeVal>')
 def getAllFileSize(sessionType, timeVal):
+	# Returns file size of all files in a folder as JSON
 	info = {}
+	# This dictionary is converted to json and returned
 	oldVal = os.path.getsize("{}{}/{}.mp3".format(DIRECTORY, sessionType, timeVal))
+	# Old value if it were being served in the Headspace app
 	info['OldValue'] = oldVal
-	print('{}{}/{}/'.format(DIRECTORY, sessionType, timeVal))
+	# Old Value is the old way of distributing audio
 	newVal = getFolderSize('{}{}/{}/'.format(DIRECTORY, sessionType, timeVal))
+	# New value is the sum of all partial files - the "New" way of distributing audio
 	info["NewValue"] = newVal
+	# Holds newVal into the info dict
 	return jsonify(info)
+	# Returns everything as nicely structured json
 
 
 @app.route('/getStructure/<folder>/<timePeriod>')
