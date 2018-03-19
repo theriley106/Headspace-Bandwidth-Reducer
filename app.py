@@ -95,7 +95,9 @@ def getFileLength(fileName):
 def getFolderSize(p):
 	# This sums up all of the file sizes in a folder.  This is useful for calculating file size differences
 	prepend = partial(os.path.join, p)
+	# Returns all folder
 	return sum([(os.path.getsize(f) if os.path.isfile(f) else getFolderSize(f)) for f in map(prepend, os.listdir(p))])
+	# Sums up all file sizes
 
 @app.route('/getAllSize/<sessionType>/<timeVal>')
 def getAllFileSize(sessionType, timeVal):
@@ -118,22 +120,19 @@ def getAllFileSize(sessionType, timeVal):
 def getStructure(folder, timePeriod):
 	# This function grabs the file/JSON indicating file splits
 	info = {}
+	# This dictionary is converted to json and returned
 	info['prevInfo'] = json.load(open("{}{}/{}.json".format(DIRECTORY, folder, timePeriod)))
+	# Broken into Prev Info and New Info because audio length was related to file structure
 	info['newInfo'] = []
+	# New info contains file size information indexed in an identical way to the split vals in prevInfo
 	for i in range(len(info['prevInfo'])):
+		# Iterates through all items in prevInfo
 		audio = MP3("{}{}/{}/{}.mp3".format(DIRECTORY, folder, timePeriod, i))
+		# Loads audio element into Mutagen
 		info['newInfo'].append(int(audio.info.length * 1000))
+		# Holds the audio length into the info dictionary.  Audio length is in Seconds, and we need ms for the startTimer javascript function.
 	return jsonify(info)
-
-@app.route('/grabFile/<fileName>', methods=["POST"])
-def grabFile(fileName):
-	# This function grabs the file/JSON indicating file splits
-	return "<h1>This Works</h1>"
-
-@app.route('/playAudio/<audioFile>')
-def playAudio(audioFile):
-	# This function plays the audio
-	return "<h1>This Works</h1>"
+	# Returns as json
 
 if __name__ == "__main__":
 	app.run()
