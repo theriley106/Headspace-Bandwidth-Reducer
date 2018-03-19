@@ -18,8 +18,7 @@ def findAllJson(directory):
 	return listOfFiles
 
 def genNew(jsonFile):
-	directory = jsonFile[::-1].format('/')[2][::-1]
-	print directory
+	directory = jsonFile[::-1].partition('/')[2][::-1]
 	num = jsonFile.replace(directory, "").replace(".json", "")
 	prevTime = 0.0
 	os.system("rm -rf {}".format(jsonFile.replace(".json", "")))
@@ -27,10 +26,10 @@ def genNew(jsonFile):
 	for i, val in enumerate(json.load(open(jsonFile))):
 		if float(val["Start"]) < float(prevTime):
 			raw_input("continue? " + str(val["Start"]) + " : " + str(prevTime))
-		os.system("ffmpeg -i {}.mp3 -c copy -ss {} -to {} {}/{}.mp3".format(num, prevTime, val["Start"], num, i))
+		os.system("ffmpeg -i {}/{}.mp3 -c copy -ss {} -to {} {}/{}/{}.mp3".format(directory, num, prevTime, val["Start"], directory, num, i))
 		prevTime = val['End']
 if __name__ == '__main__':
-	#genNew(raw_input("Num: "))
-	for i in range(10):
+	genNew("static/Mp3/basics_s1/3.json")
+	'''for i in range(10):
 		for var in findAllJson('static/Mp3/basics_s{}'.format(i+1)):
-			print var
+			print var'''
