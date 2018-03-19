@@ -69,7 +69,13 @@ def getAllFileSize(sessionType, timeVal):
 @app.route('/getStructure/<folder>/<timePeriod>')
 def getStructure(folder, timePeriod):
 	# This function grabs the file/JSON indicating file splits
-	return jsonify(json.load(open("{}{}/{}.json".format(DIRECTORY, folder, timePeriod))))
+	info = {}
+	info['prevInfo'] = json.load(open("{}{}/{}.json".format(DIRECTORY, folder, timePeriod)))
+	info['newInfo'] = []
+	for i in range(len(info['prevInfo'])):
+		audio = MP3("{}{}/{}/{}.mp3".format(DIRECTORY, folder, timePeriod, i))
+		info['newInfo'].append(int(audio.info.length * 1000))
+	return jsonify(info)
 
 @app.route('/grabFile/<fileName>', methods=["POST"])
 def grabFile(fileName):

@@ -157,7 +157,8 @@ function returnFileNameParam(fileName) {
 
 var audios = new Array();
 
-function setToPlay(audioFile, time, fileName, sessionType, timeNum) {
+function setToPlay(audioFile, time, fileName, sessionType, timeNum, indexNum) {
+	console.log("indexNum " + indexNum);
 	var url = "/getLength/" + returnFileNameParam(fileName);
 	// This will return the audio length
 	var jsonString = httpGet(url);
@@ -165,6 +166,9 @@ function setToPlay(audioFile, time, fileName, sessionType, timeNum) {
 	var ob = JSON.parse(jsonString);
 	// Parses JSON so it can be used
 	var audioLength = ob.Length;
+	console.log("OG " + audioLength);
+	var newAudioLength = audioLengthDB[indexNum];
+	console.log("New " + newAudioLength);
 	// This is the actual length of the mp3 file being played
 	setTimeout(function(){
 		startTimer(audioLength);
@@ -183,9 +187,12 @@ function streamAudio(sessionType, time){
 	// This will return file structure
 	jsonString = httpGet(url);
 	// This is the actual file structure
-	obj = JSON.parse(jsonString);
+	obVal = JSON.parse(jsonString);
 	// Converting string to json so we can interact with it
-	window.objectStructure = obj;
+	window.audioLengthDB = obVal.newInfo;
+	// Basically sets the value as global
+	var obj = obVal.prevInfo;
+	// Old Value is the structure of the file
 	var fileName = "static/Mp3/" + sessionType + "/" + time + "/0" + ".mp3";
 	// This is the filename for the actual mp3File
    	var audio = new Audio(fileName);
@@ -196,7 +203,7 @@ function streamAudio(sessionType, time){
 	// This is there so we can "Stop" all of them when another button is clicked
 	var prevEnd = 0;
 	// This sets it to 0 before the loop
-	setToPlay(audio, 0, fileName, sessionType, time);
+	setToPlay(audio, 0, fileName, sessionType, time, 0);
 	// This tells the progrma to start playing this audio file in 0 seconds
 	// Setting time as 0 will make it play immediately
 	oldOutput("<b>Playing " + sessionType + "/" + time + ".mp3" + "</b><br>");
@@ -226,7 +233,7 @@ function streamAudio(sessionType, time){
 			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 plays for " + (obj[tempNum].End - obj[tempNum].Duration).toFixed(2) + "s" + "</b><br>");
 			// This ADDS the new file output to the div
 			var audioLength = ((obj[tempNum].Start - listElem.Duration));
-			setToPlay(audio, listElem.End*1000, fileName, sessionType, time);
+			setToPlay(audio, listElem.End*1000, fileName, sessionType, time, tempNum);
 			// This sets an event to play the audio file at obj['end'] - prevElem
 			}
        }
