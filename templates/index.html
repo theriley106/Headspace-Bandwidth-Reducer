@@ -157,13 +157,13 @@ function returnFileNameParam(fileName) {
 
 var audios = new Array();
 
-function setToPlay(audioFile, time, fileName, sessionType, timeNum, indexNum) {
+function setToPlay(audioFile, time, fileName, sessionType, timeNum, indexNum, fileInfo) {
 	var audioLength = audioLengthDB[indexNum];
 	// This is the actual length of the mp3 file being played
 	setTimeout(function(){
 		startTimer(audioLength);
 		audioFile.play();
-		displayInfo(fileName, sessionType, timeNum);
+		displayInfo(fileName, sessionType, timeNum, fileInfo);
 	}, time);
 	// This outputs all info about the file
 
@@ -191,9 +191,15 @@ function streamAudio(sessionType, time){
 	audios.push(audio);
 	// Adds this audio object to the array of audio objects
 	// This is there so we can "Stop" all of them when another button is clicked
+	fileSizeURL = "/getAllSize/" + sessionType + "/" + time;
+	// This is the structure of the api call
+    jsonString = httpGet(fileSizeURL);
+    // This makes a json request to the flask API to get file size info
+    var fileInfo = JSON.parse(jsonString);
+    // This contains the information about the file size
 	var prevEnd = 0;
 	// This sets it to 0 before the loop
-	setToPlay(audio, 0, fileName, sessionType, time, 0);
+	setToPlay(audio, 0, fileName, sessionType, time, 0, fileInfo);
 	// This tells the progrma to start playing this audio file in 0 seconds
 	// Setting time as 0 will make it play immediately
 	oldOutput("<b>Playing " + sessionType + "/" + time + ".mp3" + "</b><br>");
@@ -202,6 +208,8 @@ function streamAudio(sessionType, time){
 	// audio, this is just text saying what the old method *would* have been.
 	newOutput("<b>" + sessionType + "/" + time + "/0.mp3 plays for " + (obj[0].End - obj[0].Duration).toFixed(2) + "s" + "</b><br>");
 			// This ADDS the new file output to the div
+
+
 	for (fileIndex in obj) {
 		// The json object is a list, so this is the INDEX of all items in the list
 		listElem = obj[fileIndex];
@@ -223,20 +231,17 @@ function streamAudio(sessionType, time){
 			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 plays for " + (obj[tempNum].End - obj[tempNum].Duration).toFixed(2) + "s" + "</b><br>");
 			// This ADDS the new file output to the div
 			var audioLength = ((obj[tempNum].Start - listElem.Duration));
-			setToPlay(audio, listElem.End*1000, fileName, sessionType, time, tempNum);
+			setToPlay(audio, listElem.End*1000, fileName, sessionType, time, tempNum, fileInfo);
 			// This sets an event to play the audio file at obj['end'] - prevElem
 			}
        }
     }
 
-  function displayInfo(fileName, sessionType, timeNum){
-	   var headerOutput = document.getElementById("headerOutput");
-	   fileSizeURL = "/getAllSize/" + sessionType + "/" + timeNum;
-	   jsonString = httpGet(fileSizeURL);
-	   fileInfo = JSON.parse(jsonString);
+  function displayInfo(fileName, sessionType, timeNum, fileInfo){
 	   newSize = (fileInfo.NewValue/1000).toFixed(2);
 	   oldSize = (fileInfo.OldValue/1000).toFixed(2);
 	   diffValue = (((oldSize - newSize) / oldSize) * 100).toFixed(2);
+	   var headerOutput = document.getElementById("headerOutput");
 	   headerOutput.innerHTML = "<h3 id='playingInfo'>Playing: <b>" + fileName + "</b></h3>";
 	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + oldSize + "kb</b></h4>";
 	   headerOutput.innerHTML += "<h4>New File Size: <b>" + newSize + "kb</b></h4>";
