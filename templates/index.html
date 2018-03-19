@@ -262,7 +262,9 @@ function streamAudio(sessionType, time){
 function stopAllAudio(){
 	// This stops all audio elements that are playing on the page
 	for (a in audios) {
+		// Audios is an array of all of the audio files
 		audios[a].pause();
+		// This works even if the file is not playing
 	}
 }
 
