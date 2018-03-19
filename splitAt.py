@@ -28,8 +28,12 @@ def genNew(jsonFile):
 			raw_input("continue? " + str(val["Start"]) + " : " + str(prevTime))
 		os.system("ffmpeg -i {}/{}.mp3 -c copy -ss {} -to {} {}/{}/{}.mp3".format(directory, num, prevTime, val["Start"], directory, num, i))
 		prevTime = val['End']
-if __name__ == '__main__':
-	genNew("static/Mp3/basics_s1/3.json")
-	'''for i in range(10):
+
+def doAll():
+	for i in range(10):
 		for var in findAllJson('static/Mp3/basics_s{}'.format(i+1)):
-			print var'''
+			genNew(var)
+
+if __name__ == '__main__':
+	doAll()
+

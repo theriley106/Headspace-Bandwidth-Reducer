@@ -229,7 +229,6 @@ function streamAudio(sessionType, time){
 			// This ADDS the sleep output after this file to the div
 			newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 plays for " + (obj[tempNum].End - obj[tempNum].Duration).toFixed(2) + "s" + "</b><br>");
 			// This ADDS the new file output to the div
-			var audioLength = ((obj[tempNum].Start - listElem.Duration));
 			setToPlay(audio, listElem.End*1000, fileName, sessionType, time, tempNum, fileInfo);
 			// This sets an event to play the audio file at obj['end'] - prevElem
 			}
@@ -237,16 +236,25 @@ function streamAudio(sessionType, time){
     }
 
   function displayInfo(fileName, sessionType, timeNum, fileInfo){
+  	// This fills the top div with information about the files
 	   newSize = (fileInfo.NewValue/1000).toFixed(2);
+	   // This is the total size of all of the mp3 files combined
 	   oldSize = (fileInfo.OldValue/1000).toFixed(2);
+	   // This is the size of the *initial* mp3 file that is served by the headspace app
 	   diffValue = (((oldSize - newSize) / oldSize) * 100).toFixed(2);
+	   // This is the difference in sizes between the old and new file structure
 	   var headerOutput = document.getElementById("headerOutput");
+	   // This is the top div
 	   headerOutput.innerHTML = "<h3 id='playingInfo'>Playing: <b>" + fileName + "</b></h3>";
+	   // Displays the first 1/4 of the top div
 	   headerOutput.innerHTML += "<h4>Previous File Size: <b>" + oldSize + "kb</b></h4>";
+	   // Displays the first 2/4 of the top div
 	   headerOutput.innerHTML += "<h4>New File Size: <b>" + newSize + "kb</b></h4>";
+	   // Displays the new size var in the top div
 	   headerOutput.innerHTML += "<h4>Bandwidth Reduction: <b>" + diffValue + "%</b></h4>";
-
+	   // Displays the difference between the two file structures
 	   headerOutput.innerHTML += "<h3>Remaining: <b id='timer'></b></h3>";
+	   // This is where the timer counts down
                  }
 
 
