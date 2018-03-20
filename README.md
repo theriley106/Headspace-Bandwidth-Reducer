@@ -37,6 +37,7 @@ for i in range(audioFiles.length)
 ## Python Implementation
 
 ```python
+# This code is found in bandwidthModifier.py | Lines: 117-124
 audioFile = 'sampleFile.mp3'
 jsonInfo = splitAudio(audioFile)
 with open('{}.json'.format(audioFile.partition(".")[0]), 'w') as fp:
@@ -46,7 +47,6 @@ for i, val in enumerate(jsonInfo):
   print("Audio Clip {} Completed - Sleeping for {} Seconds".format(i, val["Duration"]))
   time.sleep(val["Duration"])
 ```
-<p align="center">bandwidthModifier.py | Lines: 117-124</p>
 
 
 ## Actual Implementation
