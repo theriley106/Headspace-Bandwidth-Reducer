@@ -23,7 +23,7 @@ I have created a proof of concept application that successfully reduces audio re
 
 ```
 audioFiles = audio.split(<=50 Decibals)
-// Splits Mp3 File at every point equal or below 50 Decibals
+// Splits Mp3 File at every point equal to or below 50 Decibals
 silenceDuration = audio.split(>50 Decibals)
 // Splits Mp3 File at every point above 50 Decibals
 for i in range(audioFiles.length)
