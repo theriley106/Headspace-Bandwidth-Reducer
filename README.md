@@ -36,4 +36,22 @@ for i in range(audioFiles.length)
 
 ## Actual Implementation
 
-So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at the points below -50 Decibals.
+So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at points below -50 Decibals.
+
+Finding timestamp information from an Mp3 file is relatively easy using FFMPEG.  Here is
+
+```python
+def getSilenceTimestamps(audioFile, duration=2):
+	splitPoints = []
+	output, tmp = commands.getstatusoutput("ffmpeg -i {} -af silencedetect=noise=-50dB:d={} -f null -".format(audioFile, duration))
+	#output, tmp = commands.getstatusoutput("sox -V3 {} newAudio.mp3 silence -l 1 0.0 -50d 1 1.0 -50d : newfile : restart".format(audioFile))
+	for i, var in enumerate(str(tmp).split("\n")):
+		if "_end" in str(var):
+			try:
+				end, duration = re.findall("\d+\.\d+", str(var))
+				start = re.findall("\d+\.\d+", str(tmp.split("\n")[i-1]))[0]
+				splitPoints.append({"Start": float(start), "End": float(end), "Duration": float(duration)})
+			except Exception as exp:
+				pass
+	return splitPoints
+```
