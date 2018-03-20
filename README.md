@@ -10,5 +10,11 @@ By seperating the files at points of extended silence, we can reduce server-side
 I have created a proof of concept application that successfully reduces audio related Bandwidth costs...
 
 
-[![N|Solid](static/AudioExample1.png)](#)
-<p align="center"><b>Note the long durations of extended silence in the audio file</b></p>
+[![N|Solid](static/AudioExample3.png)](#)
+<p align="center"><b>Note the long durations of extended silence in the 3 Minute audio file</b></p>
+
+[![N|Solid](static/AudioExample5.png)](#)
+<p align="center"><b>Note the long durations of extended silence in the 3 Minute audio file</b></p>
+
+[![N|Solid](static/AudioExample10.png)](#)
+<p align="center"><b>Note the long durations of extended silence in the 3 Minute audio file</b></p>
