@@ -33,3 +33,7 @@ for i in range(audioFiles.length)
     pause silenceDuration[i].length
     // Pauses audio on the client end
 ```
+
+## Actual Implementation
+
+So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at the points below -50 Decibals.
