@@ -71,8 +71,7 @@ def getSilenceTimestamps(audioFile, duration=2):
   return splitPoints
 ```
 ```javascript
-[
-{"Duration": 2.44408, "Start": 52.9888, "End": 55.4329},
+[{"Duration": 2.44408, "Start": 52.9888, "End": 55.4329},
 {"Duration": 2.26122, "Start": 62.3407, "End": 64.6019},
 {"Duration": 2.07837, "Start": 66.6247, "End": 68.7031},
 {"Duration": 2.28735, "Start": 77.4394, "End": 79.7268},
@@ -87,6 +86,5 @@ def getSilenceTimestamps(audioFile, duration=2):
 {"Duration": 15.4008, "Start": 147.892, "End": 163.292},
 {"Duration": 2.15673, "Start": 170.801, "End": 172.958},
 {"Duration": 18.1698, "Start": 187.284, "End": 205.454},
-{"Duration": 7.79918, "Start": 217.247, "End": 225.046}
-]
+{"Duration": 7.79918, "Start": 217.247, "End": 225.046}]
 ```
