@@ -27,7 +27,7 @@ audioFiles = audio.split(<=50 Decibals)
 silenceDuration = audio.split(>50 Decibals)
 # Splits Mp3 File at every point above 50 Decibals
 for i in range(audioFiles.length)
-	# Iterates from 0 to the length of audioFiles
+    # Iterates from 0 to the length of audioFiles
     play audioFiles[i]
     # Plays guided meditation session
     pause silenceDuration[i].length
