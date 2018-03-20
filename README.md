@@ -11,4 +11,4 @@ I have created a proof of concept application that successfully reduces audio re
 
 
 [![N|Solid](static/AudioExample1.png)](#)
-<center><b>Note the long durations of silence in the audio file</b></center>
+<p align="center"><b>Note the long durations of extended silence in the audio file</b></p>
