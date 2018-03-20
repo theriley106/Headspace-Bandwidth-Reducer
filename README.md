@@ -34,6 +34,21 @@ for i in range(audioFiles.length)
     // Pauses audio on the client end
 ```
 
+## Python Implementation
+
+```python
+audioFile = 'sampleFile.mp3'
+jsonInfo = splitAudio(audioFile)
+with open('{}.json'.format(audioFile.partition(".")[0]), 'w') as fp:
+  json.dump(jsonInfo, fp)
+for i, val in enumerate(jsonInfo):
+  os.system("play {}_{}.mp3".format(audioFile.replace(".mp3", ""), i))
+  print("Audio Clip {} Completed - Sleeping for {} Seconds".format(i, val["Duration"]))
+  time.sleep(val["Duration"])
+```
+<p align="center">bandwidthModifier.py | Lines: 117-124</p>
+
+
 ## Actual Implementation
 
 So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at points below -50 Decibals.
