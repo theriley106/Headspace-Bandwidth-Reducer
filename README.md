@@ -18,3 +18,18 @@ I have created a proof of concept application that successfully reduces audio re
 
 [![N|Solid](static/AudioExample10.png)](#)
 <p align="center">File: <b>basics_s1/10.mp3</b> | Initial Length: <b>690.55s</b> | Trimmed Length: <b>281.58s</b> | Total Silence: <b>408.97s</b> or <b>59.22%</b></p>
+
+## Implementation in Pseudo-Code
+
+```
+audioFiles = audio.split(<=50 Decibals)
+# Splits Mp3 File at every point equal or below 50 Decibals
+silenceDuration = audio.split(>50 Decibals)
+# Splits Mp3 File at every point above 50 Decibals
+for i in range(audioFiles.length)
+	# Iterates from 0 to the length of audioFiles
+    play audioFiles[i]
+    # Plays guided meditation session
+    pause silenceDuration[i].length
+    # Pauses audio on the client end
+```
