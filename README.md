@@ -17,4 +17,4 @@ I have created a proof of concept application that successfully reduces audio re
 <p align="center">File: <b>basics_s1/5.mp3</b> | Initial Length: <b>390.37s</b> | Trimmed Length: <b>162.56s</b> | Total Silence: <b>227.81s</b> or <b>58.36%</b></p>
 
 [![N|Solid](static/AudioExample10.png)](#)
-<p align="center"><b>Note the long durations of extended silence in the 3 Minute audio file</b></p>
+<p align="center">File: <b>basics_s1/10.mp3</b> | Initial Length: <b>690.55s</b> | Trimmed Length: <b>281.58s</b> | Total Silence: <b>408.97s</b> or <b>59.22%</b></p>
