@@ -293,6 +293,7 @@ function streamAudio(sessionType, time){
 
 <h1 align="center">Bandwidth Reduction: 42.57%</h1>
 
+
 ## Actual Implementation
 
 So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at points below -50 Decibals.
