@@ -112,6 +112,7 @@ def getSilenceTimestamps(audioFile, duration=2):
       except Exception as exp:
         pass
   return splitPoints
+```
 
 ### #3
 
