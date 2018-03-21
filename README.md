@@ -221,7 +221,7 @@ function streamAudio(sessionType, time){
        }
     }
 ```
-<p align="center"><b>Please don't judge this code too harshly.  My skillset does <i>not</i> include Javascript, and this is pretty much the first project that I've done that's used Javascript this heavily...</b></p>
+<p align="center"><i><b>Please don't judge this code too harshly.  My skillset does not include Javascript, and this is pretty much the first project that I've done that's used Javascript this heavily...</b></i></p>
 
 ## Actual Implementation
 
