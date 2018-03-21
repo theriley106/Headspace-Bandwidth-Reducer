@@ -3,7 +3,7 @@ Proposal to the Headspace App to reduce server costs
 
 ### Introduction
 
-I have extremely bad internet speeds in my dorm room, and as a result of this low download speed, Headspace guided meditation sessions often take 30 seconds or more to download.  I was curious to see how these files were structured, as Youtube and other media streaming applications did not have this same type of delay.  This led me to assume that the download took place before the session began, as guided meditation files never buffered or stopped in the middle.
+I have extremely bad internet speeds in my dorm room, and as a result of this low download speed, Headspace guided meditation sessions often take 30 seconds or more to download.  I was curious to see how these files were structured, as Youtube and other media streaming applications did not have this same type of delay.  This led me to assume that the download took place before the session began, as guided meditation sessions never buffered or stopped in the middle.
 
 I opened up [Charles Proxy](https://www.charlesproxy.com/) and analyzed the network traffic coming from the Headspace app.  I was able to find the URL containing the raw Mp3 file of the guided meditation session, so I downloaded it locally and opened it up in audacity.
 
@@ -16,14 +16,14 @@ I noted 2 interesting things
 
 - The "Silence" in the guided meditation session was <i>actual</i> silence
 
-I assumed that the silence was just a point in which the speaker wasn't talking into the microphone.  I assumed that background noise and other sounds were picked up, but they were so quiet that they weren't noticable.  I was curious to see what the difference in filesize would be if I removed these durations of silence.  Using Audacity, I applied the "Truncate Silence" effect with the parameters indicating a level below -50 decibals, and a duration higher than .01 seconds.
+I initially thought that the silence was just a point in which the speaker wasn't talking into the microphone.  I assumed that background noise and other sounds were picked up, but they were so quiet that they weren't noticable.  I was curious to see what the difference in filesize would be if I removed these durations of silence.  Using Audacity, I applied the "Truncate Silence" effect with the parameters indicating a level below -50 decibals, and a duration higher than .01 seconds.
 
 <p align="center">
 <img src ="static/truncateSilence.png">
 </p>
 <p align="center">Audacity Truncate Silence Effect</p>
 
-After applying this effect, the filesize was reduced from 6.0 MB to 2.8 MB.
+After applying this effect, the filesize was reduced from **6.0 MB** to **2.8 MB** - **A decrease of ~53.34%**.
 
 ### Proposal
 
