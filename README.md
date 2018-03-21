@@ -137,7 +137,7 @@ I began the process of solving issue #7 using a command line utility that can be
 <img src ="static/CLI.png" /></p>
 <p align="center"><b>Initial Command Line Interface</b></p>
 
-### CLI Background Code
+<h3 align="center"> CLI Background Code</h3>
 
 ```python
 # This code is found in bandwidthModifier.py | Lines: 117-124
