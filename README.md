@@ -173,18 +173,18 @@ function streamAudio(sessionType, time){
   // Old Value is the structure of the file
   var fileName = "static/Mp3/" + sessionType + "/" + time + "/0" + ".mp3";
   // This is the filename for the actual mp3File
-     var audio = new Audio(fileName);
-     // Creates new audio object - not in the loop because the first val in
-     // structure response is 1.mp3 instead of 0.mp3
+  var audio = new Audio(fileName);
+  // Creates new audio object - not in the loop because the first val in
+  // structure response is 1.mp3 instead of 0.mp3
   audios.push(audio);
   // Adds this audio object to the array of audio objects
   // This is there so we can "Stop" all of them when another button is clicked
   fileSizeURL = "/getAllSize/" + sessionType + "/" + time;
   // This is the structure of the api call
-    jsonString = httpGet(fileSizeURL);
-    // This makes a json request to the flask API to get file size info
-    var fileInfo = JSON.parse(jsonString);
-    // This contains the information about the file size
+  jsonString = httpGet(fileSizeURL);
+  // This makes a json request to the flask API to get file size info
+  var fileInfo = JSON.parse(jsonString);
+  // This contains the information about the file size
   var prevEnd = 0;
   // This sets it to 0 before the loop
   setToPlay(audio, 0, fileName, sessionType, time, 0, fileInfo);
@@ -218,8 +218,8 @@ function streamAudio(sessionType, time){
       setToPlay(audio, listElem.End*1000, fileName, sessionType, time, tempNum, fileInfo);
       // This sets an event to play the audio file at obj['end'] - prevElem
       }
-       }
     }
+  }
 ```
 <p align="center"><i><b>Please don't judge this code too harshly.  My skillset does not include Javascript, and this is pretty much the first project that I've done that's used Javascript this heavily...</b></i></p>
 
