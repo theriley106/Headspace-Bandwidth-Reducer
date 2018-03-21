@@ -47,7 +47,7 @@ The actual process of programming this can be broken up into 7 different parts.
 
 - Split all Headspace guided meditation Mp3 files while preserving timestamps indicating durations of extended silence
 
-- Create a way of triggering a "Pause" in the audio playing on the client end
+- Implement a client-side way of triggering a "Pause" in the audio playing within the Headspace app
 
 - Create a way of distributing both the audio files and "Pause" durations to the user
 
