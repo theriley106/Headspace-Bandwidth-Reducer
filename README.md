@@ -285,6 +285,7 @@ function streamAudio(sessionType, time){
 {"Duration": 18.7445, "Start": 316.695, "End": 335.439},
 {"Duration": 2.10449, "Start": 347.728, "End": 349.833}]
 ```
+<p align="center"><b>JSON Returned from /getStructure/basics_s1/5</b></p>
 
 <p align="center">
 <img src ="static/BasicsBrokenUp5.png" />
