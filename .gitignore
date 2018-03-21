@@ -1,4 +1,2 @@
 *.pyc
-static/Mp3/*.mp3
-static/newMp3/*.mp3
-*.mp3
+exampleFile_*.mp3
