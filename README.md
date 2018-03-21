@@ -223,9 +223,7 @@ function streamAudio(sessionType, time){
 ```
 <p align="center"><b>Please don't judge this code too harshly.  My skillset does <i>not</i> include Javascript, and this is pretty much the first project that I've done that's used Javascript this heavily...</b></p>
 
-## Examples
-
-### basics_S1/3.Mp3
+## Example: basics_S1/3.Mp3
 
 <img src ="static/audioBeforeTransition.png" />
 <p align="center"><b>Original File Served by Headspace | 4373.55 kB</b></p>
@@ -259,7 +257,7 @@ function streamAudio(sessionType, time){
 </p>
 <p align="center"><b>New File Structure | 2570.88 kB</b></p>
 
-<center><h1>Bandwidth Reduction: 41.22%</h1></center>
+<h1 align="center">Bandwidth Reduction: 41.22%</h1>
 
 
 
