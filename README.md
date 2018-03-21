@@ -54,7 +54,7 @@ The actual process of programming this can be broken up into 7 different parts.
 
 ### #1 & #2
 
-[FFMPEG](https://github.com/FFmpeg/FFmpeg) allows us to differentiate between audio and silence.  Also using FFMPEG's -d parameter, we can detect extended instances of silence within an audio file.
+[FFMPEG](https://github.com/FFmpeg/FFmpeg) allows us to differentiate between audio and silence.  Also using FFMPEG's -d parameter, we can detect extended instances of silence within an audio file.  While splitting the audio file at <i>every</i> duration of silence to further reduce filesize is possible, it would result in hundreds of individual files and hundreds of network requests being made per guided meditation session.  Ideally audio files should be split at instances of extended silence, for the programs in this repository the extended silence is defined as a period of silence lasting longer than **2 seconds**.
 
 Below is the python script that redirects FFMPEG's output from stdout to the variable "tmp", and extracts all duration timestamps.  These timestamps are stored in a python dictionary, which is eventually saved as JSON.
 
