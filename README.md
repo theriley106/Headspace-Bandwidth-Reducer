@@ -54,7 +54,7 @@ The actual process of programming this can be broken up into 7 different parts.
 
 All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  I have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #6 using Swift (IOS) or Kotlin (Android).
 
-Below you can find the audio structure that is returned from a GET request to the API endpoint "/getStructure/{sessionName}/{sessionDuration}"
+Below you can find the audio structure that is returned from a GET request to the API endpoint: /getStructure/{sessionName}/{sessionDuration}
 
 ```javascript
 [{"Duration": 2.44408, "Start": 52.9888, "End": 55.4329},
@@ -75,6 +75,9 @@ Below you can find the audio structure that is returned from a GET request to th
 {"Duration": 7.79918, "Start": 217.247, "End": 225.046}]
 ```
 
+
+
+
 ## Python Implementation
 
 ```python
@@ -88,7 +91,43 @@ for i, val in enumerate(jsonInfo):
   print("Audio Clip {} Completed - Sleeping for {} Seconds".format(i, val["Duration"]))
   time.sleep(val["Duration"])
 ```
+### #1 & #2
 
+[FFMPEG](https://github.com/FFmpeg/FFmpeg) allows us to differentiate between audio and silence.  Also using FFMPEG's -d parameter, we can detect extended instances of silence within an audio file.
+
+Below is the python script that redirects FFMPEG's output from stdout to the variable "tmp", and extracts all duration timestamps.  These timestamps are stored in a python dictionary, which is eventually saved as JSON.
+
+```python
+# This code is found in bandwidthModifer.py | Lines 79-91
+def getSilenceTimestamps(audioFile, duration=2):
+  splitPoints = []
+  output, tmp = commands.getstatusoutput("ffmpeg -i {} -af silencedetect=noise=-50dB:d={} -f null -".format(audioFile, duration))
+  #output, tmp = commands.getstatusoutput("sox -V3 {} newAudio.mp3 silence -l 1 0.0 -50d 1 1.0 -50d : newfile : restart".format(audioFile))
+  for i, var in enumerate(str(tmp).split("\n")):
+    if "_end" in str(var):
+      try:
+        end, duration = re.findall("\d+\.\d+", str(var))
+        start = re.findall("\d+\.\d+", str(tmp.split("\n")[i-1]))[0]
+        splitPoints.append({"Start": float(start), "End": float(end), "Duration": float(duration)})
+      except Exception as exp:
+        pass
+  return splitPoints
+
+### #3
+
+```python
+def genNew(jsonFile):
+  directory = jsonFile[::-1].partition('/')[2][::-1]
+  num = jsonFile.replace(directory, "").replace(".json", "")
+  prevTime = 0.0
+  os.system("rm -rf {}".format(jsonFile.replace(".json", "")))
+  os.system("mkdir {}".format(jsonFile.replace(".json", "")))
+  for i, val in enumerate(json.load(open(jsonFile))):
+    if float(val["Start"]) < float(prevTime):
+      raw_input("continue? " + str(val["Start"]) + " : " + str(prevTime))
+    os.system("ffmpeg -i {}/{}.mp3 -c copy -ss {} -to {} {}/{}/{}.mp3".format(directory, num, prevTime, val["Start"], directory, num, i))
+    prevTime = val['End']
+```
 
 ## Actual Implementation
 
