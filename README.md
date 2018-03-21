@@ -37,29 +37,22 @@ for i in range(audioFiles.length)
 
 The actual process of programming this can be broken up into 7 different parts.
 
-- Create a method of differentiating between sound and silence in an audio file
+1. Create a method of differentiating between sound and silence in an audio file
 
-- Create a method of dynamically generating timestamps indicating a duration of <i>extended</i> silence
+2. Create a method of dynamically generating timestamps indicating a duration of <i>extended</i> silence
 
-- Create a function to split Audio files at these specified locations
+3. Create a function to split Audio files at these specified locations
 
-- Ensure that no portions of the audio file that contain speech are removed
+4. Ensure that no portions of the audio file that contain speech are removed
 
-- Split all Headspace guided meditation Mp3 files while preserving timestamps indicating durations of extended silence
+5. Split all Headspace guided meditation Mp3 files while preserving timestamps indicating durations of extended silence
 
-- Implement a client-side way of triggering a "Pause" in the audio playing within the Headspace app
+6. Implement a client-side way of triggering a "Pause" in the audio playing within the Headspace app
 
-- Create a way of distributing both the audio files and "Pause" durations to the user
+7. Create a way of distributing both the audio files and "Pause" durations to the user
 
 
 All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  I have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #6 using Swift (IOS) or Kotlin (Android).
-
-
-
-
-
-
-
 
 ## Python Implementation
 
