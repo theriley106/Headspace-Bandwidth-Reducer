@@ -3,9 +3,9 @@ Proposal to the Headspace App to reduce server-side bandwidth costs
 
 ## Summary
 
-The average size of the audio downloaded from the Headspace app is <b>10.16MB</b>.  Based on the fundamental purpose of a guided meditation app, a majority of these audio files contain long durations of complete silence.  Analyzing <b>1607</b> audio files, we can see that an average of <b>43.77%</b> of each HeadSpace Audio file is complete silence (defined as -50 decibals).
+The average size of the audio downloaded from the Headspace app is <b>10.16MB</b>.  Based on the fundamental purpose of a guided meditation app, a majority of these audio files contain long durations of complete silence.  Analyzing <b>1607</b> audio files, we can see that an average of <b>43.77%</b> of each Headspace guided meditation session is complete silence (defined as -50 decibals).
 
-By replacing these periods of extended silence with a client-side process indicating a *pause* in audio, Headspace can **reduce server-side bandwidth usage by more than 40%**.  Based on the tools created in this project, we can programatically seperate audio files based on silence duration, as well as communicate these silence durations to the Headspace using a Flask-Based REST API.
+By replacing these periods of extended silence with a client-side process indicating a *pause* in audio, Headspace can **reduce server-side bandwidth usage by more than 40%**.  Based on the tools created in this project, we can programatically seperate audio files based on silence duration, as well as communicate these silence durations to the Headspace app using a Flask-Based REST API.
 
 [![N|Solid](static/AudioExample3.png)](#)
 <p align="center">File: <b>basics_s1/3.mp3</b> | Initial Length: <b>270.40s</b> | Trimmed Length: <b>128.95s</b> | Total Silence: <b>141.45s</b> or <b>52.31%</b></p>
@@ -318,7 +318,7 @@ function streamAudio(sessionType, time){
 <h2 align="center">Bandwidth Reduction: 42.57%</h2>
 
 
-## Actual Implementation
+## In Conclusion
 
 So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at points below -50 Decibals.
 
