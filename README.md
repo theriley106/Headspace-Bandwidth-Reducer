@@ -52,7 +52,7 @@ The actual process of programming this can be broken up into 7 different parts.
 - Create a way of distributing both the audio files and "Pause" durations to the user
 
 
-All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  I, of course, have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #6 using Swift (IOS) or Kotlin (Android).
+All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  I have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #6 using Swift (IOS) or Kotlin (Android).
 
 
 
