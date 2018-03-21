@@ -148,8 +148,9 @@ audioLength = jsonFile[indexNum]["Start"] - jsonFile[indexNum-1]["End"]
 Unfortunately, I have no way of either viewing or modifying the way in which the Headspace app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #7 using Swift (IOS) or Kotlin (Android).
 
 I began the process of solving issue #7 using a command line utility that can be found by running [bandwidthModifer.py](bandwidthModifier.py) directly.
-<div style="text-align:center"><img src ="static/CLI.png" /></div>
-<p align="center"><b>Initial Command Line Interface</b></p>
+<p align="center">
+<img src ="static/CLI.png" />
+<b>Initial Command Line Interface</b></p>
 
 
 ## Actual Implementation
