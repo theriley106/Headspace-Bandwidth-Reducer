@@ -114,7 +114,7 @@ def getSilenceTimestamps(audioFile, duration=2):
   return splitPoints
 ```
 
-### #3 & #4
+### #3, #4, and #5
 
 By splitting the audio files <i>after</i> generating the silence timestamps, we can ensure that there will be no overlap between silence intervals and audio intervals.  Additionally, verification are put in place to prevent errors with FFMPEG's silence durations to ensure that no timestamps overlap in the audio structure.
 
