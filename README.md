@@ -225,7 +225,7 @@ function streamAudio(sessionType, time){
 
 ## Example: basics_S1/3.Mp3
 
-<img src ="static/audioBeforeTransition.png" />
+<img src ="static/audioBeforeTransition3.png" />
 <p align="center"><b>Original File Served by Headspace | 4373.55 kB</b></p>
 
 
@@ -253,13 +253,45 @@ function streamAudio(sessionType, time){
 
 
 <p align="center">
-<img src ="static/BasicsBrokenUp.png" />
+<img src ="static/BasicsBrokenUp3.png" />
 </p>
 <p align="center"><b>New File Structure | 2570.88 kB</b></p>
 
 <h1 align="center">Bandwidth Reduction: 41.22%</h1>
 
+## Example: basics_S1/5.Mp3
 
+<img src ="static/audioBeforeTransition5.png" />
+<p align="center"><b>Original File Served by Headspace | 6152.12 kB</b></p>
+
+```javascript
+[{"Duration": 2.41796, "Start": 43.8721, "End": 46.29},
+{"Duration": 3.01878, "Start": 61.6615, "End": 64.6802},
+{"Duration": 3.09714, "Start": 74.2786, "End": 77.3758},
+{"Duration": 4.14204, "Start": 90.5529, "End": 94.6949},
+{"Duration": 2.78367, "Start": 104.999, "End": 107.782},
+{"Duration": 6.54531, "Start": 113.253, "End": 119.799},
+{"Duration": 13.7551, "Start": 127.49, "End": 141.245},
+{"Duration": 2.39184, "Start": 149.276, "End": 151.668},
+{"Duration": 2.54857, "Start": 156.799, "End": 159.348},
+{"Duration": 3.09714, "Start": 162.99, "End": 166.088},
+{"Duration": 9.73224, "Start": 171.977, "End": 181.709},
+{"Duration": 2.49633, "Start": 190.158, "End": 192.654},
+{"Duration": 2.10449, "Start": 202.226, "End": 204.331},
+{"Duration": 3.95918, "Start": 208.809, "End": 212.768},
+{"Duration": 7.32898, "Start": 215.288, "End": 222.617},
+{"Duration": 32.929, "Start": 231.066, "End": 263.995},
+{"Duration": 33.4776, "Start": 270.615, "End": 304.092},
+{"Duration": 18.7445, "Start": 316.695, "End": 335.439},
+{"Duration": 2.10449, "Start": 347.728, "End": 349.833}]
+```
+
+<p align="center">
+<img src ="static/BasicsBrokenUp5.png" />
+</p>
+<p align="center"><b>New File Structure | 3533.43 kB</b></p>
+
+<h1 align="center">Bandwidth Reduction: 42.57%</h1>
 
 ## Actual Implementation
 
