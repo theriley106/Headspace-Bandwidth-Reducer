@@ -22,7 +22,8 @@ app = Flask(__name__)
 def index():
 	database = []
 	# This holds information on all sessions
-	for i in range(10):
+	for i in range(7):
+		# This needs to be changed if you add additional files
 		folder = DIRECTORY + "basics_s{}".format(i+1)
 		# This is that static directory that stores all mp3 files
 		permInfo = {"Folder": folder, "Description": "Basics Day {}".format(i+1), "Files": []}
