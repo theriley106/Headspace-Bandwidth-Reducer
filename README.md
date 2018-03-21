@@ -137,7 +137,7 @@ I began the process of solving issue #7 using a command line utility that can be
 <img src ="static/CLI.png" /></p>
 <p align="center"><b>Initial Command Line Interface</b></p>
 
-<h3 align="center"> CLI Background Code</h3>
+<h3 align="center">CLI Background Code</h3>
 
 ```python
 # This code is found in bandwidthModifier.py | Lines: 117-124
@@ -154,7 +154,74 @@ From a visual standpoint, the CLI was a very ineffective way of displaying the c
 
 [![N|Solid](static/webApp.png)](#)
 <p align="center"><b>Web App</b></p>
+<h3 align="center">Web App "Background" Code</h3>
 
+```javascript
+function streamAudio(sessionType, time){
+  // This is the function that plays the audio
+  stopAllAudio();
+  // This will stop all playing audio
+  var url = "/getStructure/" + sessionType + "/" + time;
+  // This will return file structure
+  jsonString = httpGet(url);
+  // This is the actual file structure
+  obVal = JSON.parse(jsonString);
+  // Converting string to json so we can interact with it
+  window.audioLengthDB = obVal.newInfo;
+  // Basically sets the value as global
+  var obj = obVal.prevInfo;
+  // Old Value is the structure of the file
+  var fileName = "static/Mp3/" + sessionType + "/" + time + "/0" + ".mp3";
+  // This is the filename for the actual mp3File
+     var audio = new Audio(fileName);
+     // Creates new audio object - not in the loop because the first val in
+     // structure response is 1.mp3 instead of 0.mp3
+  audios.push(audio);
+  // Adds this audio object to the array of audio objects
+  // This is there so we can "Stop" all of them when another button is clicked
+  fileSizeURL = "/getAllSize/" + sessionType + "/" + time;
+  // This is the structure of the api call
+    jsonString = httpGet(fileSizeURL);
+    // This makes a json request to the flask API to get file size info
+    var fileInfo = JSON.parse(jsonString);
+    // This contains the information about the file size
+  var prevEnd = 0;
+  // This sets it to 0 before the loop
+  setToPlay(audio, 0, fileName, sessionType, time, 0, fileInfo);
+  // This tells the progrma to start playing this audio file in 0 seconds
+  // Setting time as 0 will make it play immediately
+  oldOutput("<b>Playing " + sessionType + "/" + time + ".mp3" + "</b><br>");
+  // Adds the file info to the "OldOutput" div
+  // Since this web app is only using the new output method of distributing
+  // audio, this is just text saying what the old method *would* have been.
+  newOutput("<b>" + sessionType + "/" + time + "/0.mp3 plays for " + (obj[0].End - obj[0].Duration).toFixed(2) + "s" + "</b><br>");
+      // This ADDS the new file output to the div
+  for (fileIndex in obj) {
+    // The json object is a list, so this is the INDEX of all items in the list
+    listElem = obj[fileIndex];
+    // This assigns listElem as the actual object rather than the index number
+    var tempNum = parseInt(fileIndex) + 1;
+    // This tells it to start at 1.mp3 instead of 0.mp3
+    if (tempNum < obj.length) {
+      // This makes it iterate through all mp3 files
+      var fileName = "static/Mp3/" + sessionType + "/" + time + "/" + tempNum + ".mp3";
+      // Assigns filename of the mp3 file being played
+      var audio = new Audio(fileName);
+      // Creates new audio object
+      audios.push(audio);
+      // Adds this audio object to the array of audio objects
+      // This is there so we can "Stop" all of them when another button is clicked
+      newOutput("<b>time.sleep(" + listElem.Duration + ")" + "</b><br>");
+      // This ADDS the sleep output after this file to the div
+      newOutput("<b>" + sessionType + "/" + time + "/" + tempNum + ".mp3 plays for " + (obj[tempNum].End - obj[tempNum].Duration).toFixed(2) + "s" + "</b><br>");
+      // This ADDS the new file output to the div
+      setToPlay(audio, listElem.End*1000, fileName, sessionType, time, tempNum, fileInfo);
+      // This sets an event to play the audio file at obj['end'] - prevElem
+      }
+       }
+    }
+``
+<p align="center"><b>Please don't judge this code too harshly.  My skillset does <i>not</i> include Javascript, and this is pretty much the first project that I've done that's used Javascript this heavily...</b></p>
 ## Actual Implementation
 
 So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at points below -50 Decibals.
