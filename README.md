@@ -149,7 +149,7 @@ Unfortunately, I have no way of either viewing or modifying the way in which the
 
 I began the process of solving issue #7 using a command line utility that can be found by running [bandwidthModifer.py](bandwidthModifier.py) directly.
 <p align="center">
-<img src ="static/CLI.png" /><br></p>
+<img src ="static/CLI.png" /></p>
 <p align="center"><b>Initial Command Line Interface</b></p>
 
 
