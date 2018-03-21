@@ -18,7 +18,9 @@ I noted 2 interesting things
 
 I assumed that the silence was just a point in which the speaker wasn't talking into the microphone.  I assumed that background noise and other sounds were picked up, but they were so quiet that they weren't noticable.  I was curious to see what the difference in filesize would be if I removed these durations of silence.  Using Audacity, I applied the "Truncate Silence" effect with the parameters indicating a level below -50 decibals, and a duration higher than .01 seconds.
 
-<p align="center">[![N|Solid](static/truncateSilence.png)](#)</p>
+<p align="center">
+<img src ="static/truncateSilence.png">
+</p>
 <p align="center">Audacity Truncate Silence Effect</p>
 
 After applying this effect, the filesize was reduced from 6.0 MB to 2.8 MB.
