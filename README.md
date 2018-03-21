@@ -114,9 +114,13 @@ def getSilenceTimestamps(audioFile, duration=2):
   return splitPoints
 ```
 
-### #3
+### #3 & #4
+
+By splitting the audio files <i>after</i> generating the silence timestamps, we can ensure that there will be no overlap between silence intervals and audio intervals.  Additionally, verification are put in place to prevent errors with FFMPEG's silence durations to ensure that no timestamps overlap in the audio structure.
+
 
 ```python
+# This code is found in splitAt.py | Line 20-30
 def genNew(jsonFile):
   directory = jsonFile[::-1].partition('/')[2][::-1]
   num = jsonFile.replace(directory, "").replace(".json", "")
@@ -125,7 +129,7 @@ def genNew(jsonFile):
   os.system("mkdir {}".format(jsonFile.replace(".json", "")))
   for i, val in enumerate(json.load(open(jsonFile))):
     if float(val["Start"]) < float(prevTime):
-      raw_input("continue? " + str(val["Start"]) + " : " + str(prevTime))
+      break
     os.system("ffmpeg -i {}/{}.mp3 -c copy -ss {} -to {} {}/{}/{}.mp3".format(directory, num, prevTime, val["Start"], directory, num, i))
     prevTime = val['End']
 ```
