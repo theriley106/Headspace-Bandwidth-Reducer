@@ -45,14 +45,16 @@ The actual process of programming this can be broken up into 7 different parts.
 
 - Ensure that no portions of the audio file that contain speech are removed
 
-- Split all Headspace guided meditation files while preserving timestamps indicating durations of extended silence
+- Split all Headspace guided meditation Mp3 files while preserving timestamps indicating durations of extended silence
 
 - Create a way of triggering a "Pause" in the audio playing on the client end
 
 - Create a way of distributing both the audio files and "Pause" durations to the user
 
 
-All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  As a customer of Headspace, I have no way of modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html)
+All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  I, of course, have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #6 using Swift (IOS) or Kotlin (Android).
+
+
 
 
 
