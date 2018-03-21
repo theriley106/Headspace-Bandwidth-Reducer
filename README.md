@@ -229,9 +229,8 @@ function streamAudio(sessionType, time){
 
 <img src ="static/audioBeforeTransition.png" /></p>
 <p align="center"><b>Original File Served by Headspace | 4373.55 kB</b></p>
-
+<p align="center">
 ```javascript
-// JSON Returned from /getStructure/basics_s1/3
 [{"Duration": 2.44408, "Start": 52.9888, "End": 55.4329},
 {"Duration": 2.26122, "Start": 62.3407, "End": 64.6019},
 {"Duration": 2.07837, "Start": 66.6247, "End": 68.7031},
@@ -249,8 +248,11 @@ function streamAudio(sessionType, time){
 {"Duration": 18.1698, "Start": 187.284, "End": 205.454},
 {"Duration": 7.79918, "Start": 217.247, "End": 225.046}]
 ```
-
-<img src ="static/audioBeforeTransition.png" /></p>
+</p>
+<p align="center"><b>JSON Returned from /getStructure/basics_s1/3</b></p>
+<p align="center">
+<img src ="static/BasicsBrokenUp.png" />
+</p>
 <p align="center"><b>New File Structure | 2570.88 kB</b></p>
 
 <center><h1>Bandwidth Reduction: 41.22%</h1></center>
