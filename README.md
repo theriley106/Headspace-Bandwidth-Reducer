@@ -54,7 +54,7 @@ The actual process of programming this can be broken up into 7 different parts.
 
 All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  I have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #6 using Swift (IOS) or Kotlin (Android).
 
-Below you can find the audio structure that is returned from a GET request to the API endpoint "/getStructure/<sessionName>/<sessionDuration>"
+Below you can find the audio structure that is returned from a GET request to the API endpoint "/getStructure/\<sessionName\>/\<sessionDuration\>"
 
 ```javascript
 [{"Duration": 2.44408, "Start": 52.9888, "End": 55.4329},
