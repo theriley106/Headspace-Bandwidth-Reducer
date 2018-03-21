@@ -52,7 +52,7 @@ The actual process of programming this can be broken up into 7 different parts.
 - Create a way of distributing both the audio files and "Pause" durations to the user
 
 
-All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  As a customer of Headspace, I have no way of modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwithModifier.py) and [Javascript](templates/index.html)
+All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  As a customer of Headspace, I have no way of modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html)
 
 
 
