@@ -220,8 +220,9 @@ function streamAudio(sessionType, time){
       }
        }
     }
-``
+```
 <p align="center"><b>Please don't judge this code too harshly.  My skillset does <i>not</i> include Javascript, and this is pretty much the first project that I've done that's used Javascript this heavily...</b></p>
+
 ## Actual Implementation
 
 So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at points below -50 Decibals.
