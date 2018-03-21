@@ -1,7 +1,7 @@
 # Headspace-Bandwidth-Reducer
-Proposal to the Headspace App to reduce server costs
+Proposal to the Headspace App to reduce server-side bandwidth costs
 
-### Summary
+## Summary
 
 The average size of the audio downloaded from the Headspace app is <b>10.16MB</b>.  Based on the fundamental purpose of a guided meditation app, a majority of these audio files contain long durations of complete silence.  Analyzing <b>1607</b> audio files, we can see that an average of <b>43.77%</b> of each HeadSpace Audio file is complete silence (defined as -50 decibals).
 
