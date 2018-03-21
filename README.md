@@ -33,6 +33,31 @@ for i in range(audioFiles.length)
     pause silenceDuration[i].length
     // Pauses audio on the client end
 ```
+## Actual Implementation
+
+The actual process of programming this can be broken up into 7 different parts.
+
+- Create a method of differentiating between sound and silence in an audio file
+
+- Create a method of dynamically generating timestamps indicating a duration of <i>extended</i> silence
+
+- Create a function to split Audio files at these specified locations
+
+- Ensure that no portions of the audio file that contain speech are removed
+
+- Split all Headspace guided meditation files while preserving timestamps indicating durations of extended silence
+
+- Create a way of triggering a "Pause" in the audio playing on the client end
+
+- Create a way of distributing both the audio files and "Pause" durations to the user
+
+
+
+
+
+
+
+
 
 ## Python Implementation
 
