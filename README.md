@@ -229,7 +229,7 @@ function streamAudio(sessionType, time){
 
 <img src ="static/audioBeforeTransition.png" /></p>
 <p align="center"><b>Original File Served by Headspace | 4373.55 kB</b></p>
-<p align="center">
+<center>
 ```javascript
 [{"Duration": 2.44408, "Start": 52.9888, "End": 55.4329},
 {"Duration": 2.26122, "Start": 62.3407, "End": 64.6019},
@@ -248,7 +248,7 @@ function streamAudio(sessionType, time){
 {"Duration": 18.1698, "Start": 187.284, "End": 205.454},
 {"Duration": 7.79918, "Start": 217.247, "End": 225.046}]
 ```
-</p>
+</center>
 <p align="center"><b>JSON Returned from /getStructure/basics_s1/3</b></p>
 <p align="center">
 <img src ="static/BasicsBrokenUp.png" />
