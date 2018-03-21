@@ -153,6 +153,7 @@ for i, val in enumerate(jsonInfo):
 From a visual standpoint, the CLI was a very ineffective way of displaying the change that was made by switching to an alternate way of structuring the audio files.  I created a web app using Flask that better visualized the bandwidth difference between the files.
 
 [![N|Solid](static/webApp.png)](#)
+<p align="center"><b>Web App</b></p>
 
 ## Actual Implementation
 
