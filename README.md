@@ -137,6 +137,20 @@ I began the process of solving issue #7 using a command line utility that can be
 <img src ="static/CLI.png" /></p>
 <p align="center"><b>Initial Command Line Interface</b></p>
 
+### CLI Background Code
+
+```python
+# This code is found in bandwidthModifier.py | Lines: 117-124
+audioFile = 'sampleFile.mp3'
+jsonInfo = splitAudio(audioFile)
+with open('{}.json'.format(audioFile.partition(".")[0]), 'w') as fp:
+  json.dump(jsonInfo, fp)
+for i, val in enumerate(jsonInfo):
+  os.system("play {}_{}.mp3".format(audioFile.replace(".mp3", ""), i))
+  print("Audio Clip {} Completed - Sleeping for {} Seconds".format(i, val["Duration"]))
+  time.sleep(val["Duration"])
+```
+
 
 ## Actual Implementation
 
