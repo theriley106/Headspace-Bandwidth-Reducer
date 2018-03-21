@@ -18,7 +18,7 @@ By replacing these periods of extended silence with a client-side process indica
 
 ## Proposal
 
-## Introduction
+### Introduction
 
 I have slow internet speeds in my dorm room, and as a result of this low download speed, Headspace guided meditation sessions often take 30 seconds or more to download.  I was curious to see how these files were structured, as Youtube and other media streaming applications did not have this same type of delay.  This led me to assume that the download took place before the session began, as guided meditation sessions never buffered or stopped in the middle.
 
