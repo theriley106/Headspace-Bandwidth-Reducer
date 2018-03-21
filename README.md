@@ -47,12 +47,11 @@ The actual process of programming this can be broken up into 7 different parts.
 
 5. Split all Headspace guided meditation Mp3 files while preserving timestamps indicating durations of extended silence
 
-6. Implement a client-side way of triggering a "Pause" in the audio playing within the Headspace app
+6. Create a way of distributing both the audio files and "Pause" durations to the user
 
-7. Create a way of distributing both the audio files and "Pause" durations to the user
+7. Implement a client-side way of triggering a "Pause" in the audio playing within the Headspace app
 
-
-All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #6.  I have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #6 using Swift (IOS) or Kotlin (Android).
+All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #7.  I have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #7 using Swift (IOS) or Kotlin (Android).
 
 Below you can find the audio structure that is returned from a GET request to the API endpoint: /getStructure/{sessionName}/{sessionDuration}
 
