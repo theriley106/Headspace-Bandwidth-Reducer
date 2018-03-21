@@ -51,10 +51,6 @@ The actual process of programming this can be broken up into 7 different parts.
 
 7. Implement a client-side way of triggering a "Pause" in the audio playing within the Headspace app
 
-All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #7.  I have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #7 using Swift (IOS) or Kotlin (Android).
-
-
-
 
 
 
@@ -146,6 +142,16 @@ We can also calculate the length of the audio file using something like this:
 ```python
 audioLength = jsonFile[indexNum]["Start"] - jsonFile[indexNum-1]["End"]
 ```
+
+### #7
+
+Unfortunately, I have no way of either viewing or modifying the way in which the Headspace app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #7 using Swift (IOS) or Kotlin (Android).
+
+I began the process of solving issue #7 using a command line utility that can be found by running [bandwidthModifer.py](bandwidthModifier.py) directly.
+
+[![N|Solid](static/CLI.png)](#)
+<p align="center"><b>Initial Command Line Interface</b></p>
+
 
 ## Actual Implementation
 
