@@ -1,6 +1,22 @@
 # Headspace-Bandwidth-Reducer
 Proposal to the Headspace App to reduce server costs
 
+### Summary
+
+The average size of the audio downloaded from the Headspace app is <b>10.16MB</b>.  Based on the fundamental purpose of a guided meditation app, a majority of these audio files contain long durations of complete silence.  Analyzing <b>1607</b> audio files, we can see that an average of <b>43.77%</b> of each HeadSpace Audio file is complete silence (defined as -50 decibals).
+
+By replacing these periods of extended silence with a client-side process indicating a *pause* in audio, Headspace can **reduce server-side bandwidth usage by more than 40%**.  Based on the tools created in this project, we can programatically seperate audio files based on silence duration, as well as communicate these silence durations to the Headspace using a Flask-Base REST API.
+
+[![N|Solid](static/AudioExample3.png)](#)
+<p align="center">File: <b>basics_s1/3.mp3</b> | Initial Length: <b>270.40s</b> | Trimmed Length: <b>128.95s</b> | Total Silence: <b>141.45s</b> or <b>52.31%</b></p>
+
+[![N|Solid](static/AudioExample5.png)](#)
+<p align="center">File: <b>basics_s1/5.mp3</b> | Initial Length: <b>390.37s</b> | Trimmed Length: <b>162.56s</b> | Total Silence: <b>227.81s</b> or <b>58.36%</b></p>
+
+[![N|Solid](static/AudioExample10.png)](#)
+<p align="center">File: <b>basics_s1/10.mp3</b> | Initial Length: <b>690.55s</b> | Trimmed Length: <b>281.58s</b> | Total Silence: <b>408.97s</b> or <b>59.22%</b></p>
+
+
 ### Introduction
 
 I have slow internet speeds in my dorm room, and as a result of this low download speed, Headspace guided meditation sessions often take 30 seconds or more to download.  I was curious to see how these files were structured, as Youtube and other media streaming applications did not have this same type of delay.  This led me to assume that the download took place before the session began, as guided meditation sessions never buffered or stopped in the middle.
@@ -23,27 +39,11 @@ I initially thought that the silence was just a point in which the speaker wasn'
 </p>
 <p align="center">Audacity Truncate Silence Effect</p>
 
-After applying this effect, the filesize was reduced from **6.0 MB** to **2.8 MB** - **A decrease of ~53.34%**.
+After applying this effect, the filesize was reduced from **6.0 MB** to **2.8 MB** - **A decrease of ~53.34%**.  After seeing such a large difference in filesize, I began to theorize a way of restructuring all of the Headspace guided meditation sessions to reduce server-side bandwidth costs.  By restructuring guided meditation sessions to replace the silence interval with a *client-side process* we can successfully reduce bandwidth for both Headspace and the user.
 
-### Proposal
+## Proposal
 
-The average size of the audio downloaded from the Headspace app is <b>10.16MB</b>.  Based on the fundamental purpose of a guided meditation app, a majority of these audio files contain long durations of complete silence.  Analyzing <b>1607</b> audio files, we can see that an average of <b>43.77%</b> of each HeadSpace Audio file is complete silence (Defined as -50 decibals).
-
-By seperating the files at points of extended silence, we can **reduce server-side bandwidth usage by more than 40%**.  Based on the tools created in this project, we can programatically seperate audio files based on silence duration.
-
-I have created a proof of concept application that successfully reduces audio related Bandwidth costs...
-
-
-[![N|Solid](static/AudioExample3.png)](#)
-<p align="center">File: <b>basics_s1/3.mp3</b> | Initial Length: <b>270.40s</b> | Trimmed Length: <b>128.95s</b> | Total Silence: <b>141.45s</b> or <b>52.31%</b></p>
-
-[![N|Solid](static/AudioExample5.png)](#)
-<p align="center">File: <b>basics_s1/5.mp3</b> | Initial Length: <b>390.37s</b> | Trimmed Length: <b>162.56s</b> | Total Silence: <b>227.81s</b> or <b>58.36%</b></p>
-
-[![N|Solid](static/AudioExample10.png)](#)
-<p align="center">File: <b>basics_s1/10.mp3</b> | Initial Length: <b>690.55s</b> | Trimmed Length: <b>281.58s</b> | Total Silence: <b>408.97s</b> or <b>59.22%</b></p>
-
-## Implementation in Pseudo-Code
+### Implementation in Pseudo-Code
 
 ```
 audioFiles = audio.split(<=50 Decibals)
@@ -57,7 +57,7 @@ for i in range(audioFiles.length)
     pause silenceDuration[i].length
     // Pauses audio on the client end
 ```
-## Actual Implementation
+### Actual Implementation
 
 The actual process of programming this can be broken up into 7 different parts.
 
