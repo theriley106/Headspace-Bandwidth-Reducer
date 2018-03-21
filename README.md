@@ -53,26 +53,7 @@ The actual process of programming this can be broken up into 7 different parts.
 
 All of these steps have been successfully implemented in the programs contained in this repository, with the exception of #7.  I have no way of either viewing or modifying the way in which the app serves audio files.  However, I have implemented the modified method of distributing audio using both [Python](bandwidthModifier.py) and [Javascript](templates/index.html).  Additionally, the way in which silence durations are structured makes it relatively easy to implement #7 using Swift (IOS) or Kotlin (Android).
 
-Below you can find the audio structure that is returned from a GET request to the API endpoint: /getStructure/{sessionName}/{sessionDuration}
 
-```javascript
-[{"Duration": 2.44408, "Start": 52.9888, "End": 55.4329},
-{"Duration": 2.26122, "Start": 62.3407, "End": 64.6019},
-{"Duration": 2.07837, "Start": 66.6247, "End": 68.7031},
-{"Duration": 2.28735, "Start": 77.4394, "End": 79.7268},
-{"Duration": 2.86204, "Start": 82.246, "End": 85.108},
-{"Duration": 3.69796, "Start": 87.157, "End": 90.8549},
-{"Duration": 8.89633, "Start": 93.6092, "End": 102.506},
-{"Duration": 3.77633, "Start": 108.368, "End": 112.145},
-{"Duration": 3.0449, "Start": 117.407, "End": 120.452},
-{"Duration": 3.09714, "Start": 123.598, "End": 126.695},
-{"Duration": 3.64571, "Start": 129.919, "End": 133.565},
-{"Duration": 2.57469, "Start": 136.267, "End": 138.842},
-{"Duration": 15.4008, "Start": 147.892, "End": 163.292},
-{"Duration": 2.15673, "Start": 170.801, "End": 172.958},
-{"Duration": 18.1698, "Start": 187.284, "End": 205.454},
-{"Duration": 7.79918, "Start": 217.247, "End": 225.046}]
-```
 
 
 
@@ -115,7 +96,7 @@ def getSilenceTimestamps(audioFile, duration=2):
 
 ### #3, #4, and #5
 
-By splitting the audio files <i>after</i> generating the silence timestamps, we can ensure that there will be no overlap between silence intervals and audio intervals.  Additionally, verification are put in place to prevent errors with FFMPEG's silence durations to ensure that no timestamps overlap in the audio structure.
+By splitting the audio files <i>after</i> generating the silence timestamps, we can ensure that there will be no overlap between silence intervals and audio intervals.  Additionally, verifications are put in place to prevent errors with FFMPEG's silence durations to ensure that no timestamps overlap in the audio structure.
 
 
 ```python
@@ -131,6 +112,39 @@ def genNew(jsonFile):
       break
     os.system("ffmpeg -i {}/{}.mp3 -c copy -ss {} -to {} {}/{}/{}.mp3".format(directory, num, prevTime, val["Start"], directory, num, i))
     prevTime = val['End']
+```
+
+# #6
+
+Distributing the durations and timestamps of the periods of extended was silence was done using a Flask-Based REST API.
+
+Below you can find an example audio structure that is returned when a GET request is made to the API endpoint: /getStructure/{sessionName}/{sessionDuration}
+
+```javascript
+[{"Duration": 2.44408, "Start": 52.9888, "End": 55.4329},
+{"Duration": 2.26122, "Start": 62.3407, "End": 64.6019},
+{"Duration": 2.07837, "Start": 66.6247, "End": 68.7031},
+{"Duration": 2.28735, "Start": 77.4394, "End": 79.7268},
+{"Duration": 2.86204, "Start": 82.246, "End": 85.108},
+{"Duration": 3.69796, "Start": 87.157, "End": 90.8549},
+{"Duration": 8.89633, "Start": 93.6092, "End": 102.506},
+{"Duration": 3.77633, "Start": 108.368, "End": 112.145},
+{"Duration": 3.0449, "Start": 117.407, "End": 120.452},
+{"Duration": 3.09714, "Start": 123.598, "End": 126.695},
+{"Duration": 3.64571, "Start": 129.919, "End": 133.565},
+{"Duration": 2.57469, "Start": 136.267, "End": 138.842},
+{"Duration": 15.4008, "Start": 147.892, "End": 163.292},
+{"Duration": 2.15673, "Start": 170.801, "End": 172.958},
+{"Duration": 18.1698, "Start": 187.284, "End": 205.454},
+{"Duration": 7.79918, "Start": 217.247, "End": 225.046}]
+```
+
+Interacting with this data is language dependant, but most languages make it relatively easy to work with JSON.  The "Duration" key references the duration of silence, "Start" references the point at which the silence began, and "End" references the point at which the silence stopped.
+
+We can also calculate the length of the audio file using something like this:
+
+```python
+audioLength = jsonFile[indexNum]["Start"] - jsonFile[indexNum-1]["End"]
 ```
 
 ## Actual Implementation
