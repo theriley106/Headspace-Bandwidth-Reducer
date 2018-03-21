@@ -12,7 +12,7 @@ I opened up [Charles Proxy](https://www.charlesproxy.com/) and analyzed the netw
 
 I noted 2 interesting things
 
-- The size of this file that I downloaded was 6.0 MB
+- The size of the meditation session that I downloaded was 6.0 MB
 
 - The "Silence" in the guided meditation session was <i>actual</i> silence
 
