@@ -150,7 +150,9 @@ for i, val in enumerate(jsonInfo):
   print("Audio Clip {} Completed - Sleeping for {} Seconds".format(i, val["Duration"]))
   time.sleep(val["Duration"])
 ```
+From a visual standpoint, the CLI was a very ineffective way of displaying the change that was made by switching to an alternate way of structuring the audio files.  I created a web app using Flask that better visualized the bandwidth difference between the files.
 
+[![N|Solid](static/webApp.png)](#)
 
 ## Actual Implementation
 
