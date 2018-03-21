@@ -257,7 +257,7 @@ function streamAudio(sessionType, time){
 </p>
 <p align="center"><b>New File Structure | 2570.88 kB</b></p>
 
-<h1 align="center">Bandwidth Reduction: 41.22%</h1>
+<h2 align="center">Bandwidth Reduction: 41.22%</h2>
 
 ## Example: basics_S1/5.Mp3
 
@@ -291,7 +291,7 @@ function streamAudio(sessionType, time){
 </p>
 <p align="center"><b>New File Structure | 3533.43 kB</b></p>
 
-<h1 align="center">Bandwidth Reduction: 42.57%</h1>
+<h2 align="center">Bandwidth Reduction: 42.57%</h2>
 
 
 ## Actual Implementation
