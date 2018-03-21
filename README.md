@@ -116,7 +116,7 @@ def genNew(jsonFile):
 
 ### #6
 
-Distributing the durations and timestamps of the periods of extended was silence was done using a Flask-Based REST API.
+Distributing the timestamps of periods of extended silence was done using a Flask-Based REST API.
 
 Below you can find an example audio structure that is returned when a GET request is made to the API endpoint: /getStructure/{sessionName}/{sessionDuration}
 
