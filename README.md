@@ -52,21 +52,6 @@ The actual process of programming this can be broken up into 7 different parts.
 7. Implement a client-side way of triggering a "Pause" in the audio playing within the Headspace app
 
 
-
-
-## Python Implementation
-
-```python
-# This code is found in bandwidthModifier.py | Lines: 117-124
-audioFile = 'sampleFile.mp3'
-jsonInfo = splitAudio(audioFile)
-with open('{}.json'.format(audioFile.partition(".")[0]), 'w') as fp:
-  json.dump(jsonInfo, fp)
-for i, val in enumerate(jsonInfo):
-  os.system("play {}_{}.mp3".format(audioFile.replace(".mp3", ""), i))
-  print("Audio Clip {} Completed - Sleeping for {} Seconds".format(i, val["Duration"]))
-  time.sleep(val["Duration"])
-```
 ### #1 & #2
 
 [FFMPEG](https://github.com/FFmpeg/FFmpeg) allows us to differentiate between audio and silence.  Also using FFMPEG's -d parameter, we can detect extended instances of silence within an audio file.
