@@ -1,7 +1,9 @@
 # Headspace-Bandwidth-Reducer
 Proposal to the Headspace App to reduce server-side bandwidth costs
 
-<h1 align="center"><a href="headspace-bandwidth.herokuapp.com">Web App Using This Technology</a></h1>
+<h1 align="center"><a href="headspace-bandwidth.herokuapp.com">Web App that Demonstrates the New Audio Structure</a></h1>
+
+<h1 align="center"><a href="headspace-bandwidth.herokuapp.com">Heroku App that Demonstrates the New Audio Structure</a></h1>
 
 ## Summary
 
