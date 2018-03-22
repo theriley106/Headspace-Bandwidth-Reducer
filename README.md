@@ -1,6 +1,8 @@
 # Headspace-Bandwidth-Reducer
 Proposal to the Headspace App to reduce server-side bandwidth costs
 
+<h1 align="center"><a href="headspace-bandwidth.herokuapp.com">Web App Using This Technology</a></h1>
+
 ## Summary
 
 The average size of the audio downloaded from the Headspace app is <b>10.16MB</b>.  Based on the fundamental purpose of a guided meditation app, a majority of these audio files contain long durations of complete silence.  Analyzing <b>1607</b> audio files, we can see that an average of <b>43.77%</b> of each Headspace guided meditation session is complete silence (defined as -50 decibals).
@@ -319,6 +321,8 @@ function streamAudio(sessionType, time){
 
 
 ## In Conclusion
+
+A restructure of the Headspace guided meditation sessions would result in a significant decrease in server-side bandwidth costs.  T
 
 So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at points below -50 Decibals.
 
