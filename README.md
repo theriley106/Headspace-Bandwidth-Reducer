@@ -324,25 +324,12 @@ function streamAudio(sessionType, time){
 
 ## In Conclusion
 
-A restructure of the Headspace guided meditation sessions would result in a significant decrease in server-side bandwidth costs.  T
+A restructure of Headspace guided meditation sessions would result in a significant decrease in server-side bandwidth costs.  A decrease in filesize would increase the speed of the Headspace app, as well as decrease the data consumption of the app itself.
 
-So from a processing standpoint it would be illogical to split audio files on <i>every</i> request made to the server, however it would not be computationally intensive to go through each current headspace Mp3 file and split at points below -50 Decibals.
+While I'm not able to view the percentage of users that start a session without completing it, I would imagine this is encompasses a fairly significant amount of users.  By splitting the audio files in the way described in this repository, it would allow Headspace to distribute the file in parts rather than having the user download the entire file before starting a session.  Distributing the file in parts would also allow Headspace to gather more detailed/accurate analytics regarding the length that users are listening to the session.
 
-Finding timestamp information from an Mp3 file is relatively easy using FFMPEG.  Here is
+I want to emphasize that a restructure of audio files would be completely indistinguishable from the user's perspective.
 
-```python
-def getSilenceTimestamps(audioFile, duration=2):
-  splitPoints = []
-  output, tmp = commands.getstatusoutput("ffmpeg -i {} -af silencedetect=noise=-50dB:d={} -f null -".format(audioFile, duration))
-  #output, tmp = commands.getstatusoutput("sox -V3 {} newAudio.mp3 silence -l 1 0.0 -50d 1 1.0 -50d : newfile : restart".format(audioFile))
-  for i, var in enumerate(str(tmp).split("\n")):
-    if "_end" in str(var):
-      try:
-        end, duration = re.findall("\d+\.\d+", str(var))
-        start = re.findall("\d+\.\d+", str(tmp.split("\n")[i-1]))[0]
-        splitPoints.append({"Start": float(start), "End": float(end), "Duration": float(duration)})
-      except Exception as exp:
-        pass
-  return splitPoints
-```
+**PS. If Headspace is looking for Software Engineering Interns for the Summer of 2018, please let me know.  I really love your app, and I would love to join the team in LA :)**
 
+My Email: ChristopherLambert106@gmail.com
