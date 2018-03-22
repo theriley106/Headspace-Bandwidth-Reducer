@@ -326,7 +326,7 @@ function streamAudio(sessionType, time){
 
 A restructure of Headspace guided meditation sessions would result in a significant decrease in server-side bandwidth costs.  A decrease in filesize would increase the speed of the Headspace app, as well as decrease the data consumption of the app itself.
 
-While I'm not able to view the percentage of users that start a session without completing it, I would imagine this is encompasses a fairly significant amount of users.  By splitting the audio files in the way described in this repository, it would allow Headspace to distribute the file in parts rather than having the user download the entire file before starting a session.  Distributing the file in parts would also allow Headspace to gather more detailed/accurate analytics regarding the length that users are listening to the session.
+While I'm not able to view the percentage of users that start a session without completing it, I would imagine this encompasses a fairly significant amount of users.  By splitting the audio files in the way described in this repository, it would allow Headspace to distribute the file in parts rather than having the user download the entire file before starting a session.  Distributing the file in parts would also allow Headspace to gather more detailed/accurate analytics regarding the length that users are listening to the session.
 
 I want to emphasize that a restructure of audio files would be completely indistinguishable from the user's perspective.
 
