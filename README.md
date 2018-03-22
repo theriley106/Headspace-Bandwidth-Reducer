@@ -1,5 +1,5 @@
 # Headspace-Bandwidth-Reducer
-Restructuring Headspace Guided Meditation sessions to reduce server-side bandwidth costs
+Restructuring Headspace Guided Meditation Sessions to Reduce Server-Side Bandwidth Costs
 
 <h1 align="center"><a href="http://headspace-bandwidth.herokuapp.com/">Headspace-Bandwidth-Reducer Web App</a></h1>
 
