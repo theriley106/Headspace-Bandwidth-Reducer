@@ -3,7 +3,7 @@ Restructuring Headspace Guided Meditation Sessions to Reduce Server-Side Bandwid
 
 <h1 align="center"><a href="http://headspace-bandwidth.herokuapp.com/">Headspace-Bandwidth-Reducer Web App</a></h1>
 
-<h2 align="center"><a href="headspace-bandwidth.herokuapp.com">Youtube Video That Explains the Modified File Structure</a></h2>
+<h2 align="center"><a href="https://youtu.be/p0hbONMGPN8">Youtube Video That Explains the Modified File Structure</a></h2>
 
 ## Summary
 
