@@ -7,7 +7,7 @@
 
 ## Summary
 
-The average size of the audio downloaded from the Headspace app is <b>10.16MB</b>.  Based on the fundamental purpose of a guided meditation app, a majority of these audio files contain long durations of complete silence.  Analyzing <b>1607</b> audio files, we can see that an average of <b>43.77%</b> of each Headspace guided meditation session is complete silence (defined as -50 decibals).
+The average size of the audio downloaded from the Headspace app is <b>10.16MB</b>.  As is expected with a guided meditation app, a majority of these audio files contain long durations of complete silence.  Analyzing <b>1607</b> audio files, we can see that an average of <b>43.77%</b> of each Headspace guided meditation session is complete silence (defined as -50 decibals).
 
 By replacing these periods of extended silence with a client-side process indicating a *pause* in audio, Headspace can **reduce server-side bandwidth usage by more than 40%**.  Based on the tools created in this project, we can programatically seperate audio files based on silence duration, as well as communicate these silence durations to the Headspace app using a Flask-Based REST API.
 
